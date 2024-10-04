@@ -35,6 +35,6 @@ public Donation(String donorName, String bloodType, int Amount, LocalDate donoDa
                 ", bloodType: " + getBloodType() + '\'' +
                 ", Amount: " + getAmount() + '\'' +
                 ", DonationDate: " + getDonoDate() +
-                '}'
+                '}';
     }
 }
