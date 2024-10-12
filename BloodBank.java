@@ -11,7 +11,7 @@ package bloodbank;
  */
 
 public class BloodBank extends javax.swing.JFrame {
-
+// get the type and quantity
     private int A_pos = 10;
     private int A_neg = 5;
     private int B_pos = 8;
@@ -23,6 +23,7 @@ public class BloodBank extends javax.swing.JFrame {
 
     public BloodBank() {
         initComponents();
+        // have to display them
         displayBloodQuantities();
     }
 
@@ -49,7 +50,7 @@ public class BloodBank extends javax.swing.JFrame {
         jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
-
+        // create layout 
         jPanel.setLayout(new GridLayout(0, 2)); 
         jScrollPane.setViewportView(jPanel); 
 
@@ -57,7 +58,7 @@ public class BloodBank extends javax.swing.JFrame {
 
         pack();
     }
-
+// create class for the quantities
     private void displayBloodQuantities() {
 
         jPanel.removeAll();
