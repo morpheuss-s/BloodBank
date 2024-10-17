@@ -34,7 +34,7 @@ public class LoginPage extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(204, 0, 0));
@@ -148,11 +148,13 @@ public class LoginPage extends javax.swing.JFrame {
        
        
     }//GEN-LAST:event_jButton1ActionPerformed
-
+       
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-        Menu mm = new Menu();
-        mm.setVisible(true);
+        //Menu mm = new Menu();
+        //mm.setVisible(true);
+        
+        //Paul: Commented out these since it was creating 2 internal frames when logging in
       
     }//GEN-LAST:event_jButton1MouseClicked
 
