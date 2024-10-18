@@ -26,15 +26,15 @@ public class DonorMenu extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
+        exitButton = new javax.swing.JButton();
+        addNewDonorButton = new javax.swing.JButton();
+        updateDonorInfoButton = new javax.swing.JButton();
+        removeDonor = new javax.swing.JButton();
+        showDonorListButton = new javax.swing.JButton();
+        moreLabel = new javax.swing.JLabel();
+        donateBloodImageLabel = new javax.swing.JLabel();
+        donorMenuLabel = new javax.swing.JLabel();
+        seeReportButton = new javax.swing.JButton();
         DonorPane = new javax.swing.JLabel();
 
         setClosable(true);
@@ -43,62 +43,62 @@ public class DonorMenu extends javax.swing.JInternalFrame {
         setFocusable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setBackground(new java.awt.Color(204, 0, 0));
-        jButton1.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Exit");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        exitButton.setBackground(new java.awt.Color(204, 0, 0));
+        exitButton.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
+        exitButton.setForeground(new java.awt.Color(255, 255, 255));
+        exitButton.setText("Exit");
+        exitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                exitButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 780, 100, 30));
+        getContentPane().add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 780, 100, 30));
 
-        jButton2.setBackground(new java.awt.Color(204, 0, 0));
-        jButton2.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Add New Donor");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        addNewDonorButton.setBackground(new java.awt.Color(204, 0, 0));
+        addNewDonorButton.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
+        addNewDonorButton.setForeground(new java.awt.Color(255, 255, 255));
+        addNewDonorButton.setText("Add New Donor");
+        addNewDonorButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                addNewDonorButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 180, 30));
+        getContentPane().add(addNewDonorButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 180, 30));
 
-        jButton3.setBackground(new java.awt.Color(204, 0, 0));
-        jButton3.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("update Donor Info");
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, 30));
+        updateDonorInfoButton.setBackground(new java.awt.Color(204, 0, 0));
+        updateDonorInfoButton.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
+        updateDonorInfoButton.setForeground(new java.awt.Color(255, 255, 255));
+        updateDonorInfoButton.setText("update Donor Info");
+        getContentPane().add(updateDonorInfoButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, 30));
 
-        jButton4.setBackground(new java.awt.Color(204, 0, 0));
-        jButton4.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Remove Donor");
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 180, 30));
+        removeDonor.setBackground(new java.awt.Color(204, 0, 0));
+        removeDonor.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
+        removeDonor.setForeground(new java.awt.Color(255, 255, 255));
+        removeDonor.setText("Remove Donor");
+        getContentPane().add(removeDonor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 180, 30));
 
-        jButton5.setBackground(new java.awt.Color(204, 0, 0));
-        jButton5.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Show Donor list");
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 170, 30));
+        showDonorListButton.setBackground(new java.awt.Color(204, 0, 0));
+        showDonorListButton.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
+        showDonorListButton.setForeground(new java.awt.Color(255, 255, 255));
+        showDonorListButton.setText("Show Donor list");
+        getContentPane().add(showDonorListButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 170, 30));
 
-        jLabel1.setBackground(new java.awt.Color(204, 0, 0));
-        jLabel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "More", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Bahnschrift", 0, 24), new java.awt.Color(204, 0, 0))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 430, 220));
+        moreLabel.setBackground(new java.awt.Color(204, 0, 0));
+        moreLabel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "More", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Bahnschrift", 0, 24), new java.awt.Color(204, 0, 0))); // NOI18N
+        getContentPane().add(moreLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 430, 220));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngegg (28).png"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 540, 170, 170));
+        donateBloodImageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngegg (28).png"))); // NOI18N
+        getContentPane().add(donateBloodImageLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 540, 170, 170));
 
-        jLabel2.setBackground(new java.awt.Color(204, 0, 0));
-        jLabel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Donor Menu", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Bahnschrift", 0, 24), new java.awt.Color(204, 0, 0))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 437, 840));
+        donorMenuLabel.setBackground(new java.awt.Color(204, 0, 0));
+        donorMenuLabel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Donor Menu", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Bahnschrift", 0, 24), new java.awt.Color(204, 0, 0))); // NOI18N
+        getContentPane().add(donorMenuLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 437, 840));
 
-        jButton6.setBackground(new java.awt.Color(204, 0, 0));
-        jButton6.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("see Report");
-        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, 180, 30));
+        seeReportButton.setBackground(new java.awt.Color(204, 0, 0));
+        seeReportButton.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
+        seeReportButton.setForeground(new java.awt.Color(255, 255, 255));
+        seeReportButton.setText("see Report");
+        getContentPane().add(seeReportButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, 180, 30));
 
         DonorPane.setAutoscrolls(true);
         DonorPane.setFocusable(false);
@@ -107,7 +107,7 @@ public class DonorMenu extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void addNewDonorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewDonorButtonActionPerformed
         // TODO add your handling code here:
         Registration reg = new Registration();
         DonorPane.add(reg).setVisible(true);
@@ -115,24 +115,24 @@ public class DonorMenu extends javax.swing.JInternalFrame {
         
         
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_addNewDonorButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
         // TODO add your handling code here:
         dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_exitButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel DonorPane;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton addNewDonorButton;
+    private javax.swing.JLabel donateBloodImageLabel;
+    private javax.swing.JLabel donorMenuLabel;
+    private javax.swing.JButton exitButton;
+    private javax.swing.JLabel moreLabel;
+    private javax.swing.JButton removeDonor;
+    private javax.swing.JButton seeReportButton;
+    private javax.swing.JButton showDonorListButton;
+    private javax.swing.JButton updateDonorInfoButton;
     // End of variables declaration//GEN-END:variables
 }

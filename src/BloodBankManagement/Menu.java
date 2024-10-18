@@ -27,23 +27,23 @@ public class Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         Desktop = new javax.swing.JDesktopPane();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        jMenuItem11 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        AddDonor = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
+        menuBar = new javax.swing.JMenuBar();
+        adminPanelMenu = new javax.swing.JMenu();
+        addNewUserMenuItem = new javax.swing.JMenuItem();
+        deleteUserMenuItem = new javax.swing.JMenuItem();
+        updateUserProfileMenuItem = new javax.swing.JMenuItem();
+        myAccountMenu = new javax.swing.JMenu();
+        profileMenuItem = new javax.swing.JMenuItem();
+        logoutMenuItem = new javax.swing.JMenuItem();
+        bloodDonorsMenu = new javax.swing.JMenu();
+        addDonorMenuItem = new javax.swing.JMenuItem();
+        updateDonorProfileMenuItem = new javax.swing.JMenuItem();
+        deleteDonorMenuItem = new javax.swing.JMenuItem();
+        bloodInventoryMenu = new javax.swing.JMenu();
+        currentStockStatusMenuItem = new javax.swing.JMenuItem();
+        addNewStockMenuItem = new javax.swing.JMenuItem();
+        updateStockMenuItem = new javax.swing.JMenuItem();
+        getStockReportMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,98 +58,98 @@ public class Menu extends javax.swing.JFrame {
             .addGap(0, 943, Short.MAX_VALUE)
         );
 
-        jMenuBar1.setBackground(new java.awt.Color(204, 0, 0));
-        jMenuBar1.setPreferredSize(new java.awt.Dimension(472, 40));
+        menuBar.setBackground(new java.awt.Color(204, 0, 0));
+        menuBar.setPreferredSize(new java.awt.Dimension(472, 40));
 
-        jMenu1.setText("Admin Panel");
-        jMenu1.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        adminPanelMenu.setText("Admin Panel");
+        adminPanelMenu.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
 
-        jMenuItem1.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
-        jMenuItem1.setText("Add New User");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        addNewUserMenuItem.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        addNewUserMenuItem.setText("Add New User");
+        addNewUserMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                addNewUserMenuItemActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        adminPanelMenu.add(addNewUserMenuItem);
 
-        jMenuItem2.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
-        jMenuItem2.setText("Delete User");
-        jMenu1.add(jMenuItem2);
+        deleteUserMenuItem.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        deleteUserMenuItem.setText("Delete User");
+        adminPanelMenu.add(deleteUserMenuItem);
 
-        jMenuItem3.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
-        jMenuItem3.setText("Update user Profile");
-        jMenu1.add(jMenuItem3);
+        updateUserProfileMenuItem.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        updateUserProfileMenuItem.setText("Update user Profile");
+        adminPanelMenu.add(updateUserProfileMenuItem);
 
-        jMenuBar1.add(jMenu1);
+        menuBar.add(adminPanelMenu);
 
-        jMenu4.setText("     My Account");
-        jMenu4.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        myAccountMenu.setText("     My Account");
+        myAccountMenu.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
 
-        jMenuItem11.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
-        jMenuItem11.setText("Profile");
-        jMenu4.add(jMenuItem11);
+        profileMenuItem.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        profileMenuItem.setText("Profile");
+        myAccountMenu.add(profileMenuItem);
 
-        jMenuItem12.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
-        jMenuItem12.setText("Logout");
-        jMenu4.add(jMenuItem12);
+        logoutMenuItem.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        logoutMenuItem.setText("Logout");
+        myAccountMenu.add(logoutMenuItem);
 
-        jMenuBar1.add(jMenu4);
+        menuBar.add(myAccountMenu);
 
-        jMenu2.setText("     Blood Donors");
-        jMenu2.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
-        jMenu2.addActionListener(new java.awt.event.ActionListener() {
+        bloodDonorsMenu.setText("     Blood Donors");
+        bloodDonorsMenu.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        bloodDonorsMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu2ActionPerformed(evt);
+                bloodDonorsMenuActionPerformed(evt);
             }
         });
 
-        AddDonor.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
-        AddDonor.setText("Add New Donor");
-        AddDonor.addActionListener(new java.awt.event.ActionListener() {
+        addDonorMenuItem.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        addDonorMenuItem.setText("Add New Donor");
+        addDonorMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddDonorActionPerformed(evt);
+                addDonorMenuItemActionPerformed(evt);
             }
         });
-        jMenu2.add(AddDonor);
+        bloodDonorsMenu.add(addDonorMenuItem);
 
-        jMenuItem5.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
-        jMenuItem5.setText("Update Donor Profile");
-        jMenu2.add(jMenuItem5);
+        updateDonorProfileMenuItem.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        updateDonorProfileMenuItem.setText("Update Donor Profile");
+        bloodDonorsMenu.add(updateDonorProfileMenuItem);
 
-        jMenuItem6.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
-        jMenuItem6.setText("Delete Donor");
-        jMenu2.add(jMenuItem6);
+        deleteDonorMenuItem.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        deleteDonorMenuItem.setText("Delete Donor");
+        bloodDonorsMenu.add(deleteDonorMenuItem);
 
-        jMenuBar1.add(jMenu2);
+        menuBar.add(bloodDonorsMenu);
 
-        jMenu3.setText("      Blood Inventory");
-        jMenu3.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        bloodInventoryMenu.setText("      Blood Inventory");
+        bloodInventoryMenu.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
 
-        jMenuItem7.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
-        jMenuItem7.setText("Stock Current Status");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+        currentStockStatusMenuItem.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        currentStockStatusMenuItem.setText("Current Stock Status");
+        currentStockStatusMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
+                currentStockStatusMenuItemActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem7);
+        bloodInventoryMenu.add(currentStockStatusMenuItem);
 
-        jMenuItem8.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
-        jMenuItem8.setText("Add New Stock");
-        jMenu3.add(jMenuItem8);
+        addNewStockMenuItem.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        addNewStockMenuItem.setText("Add New Stock");
+        bloodInventoryMenu.add(addNewStockMenuItem);
 
-        jMenuItem9.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
-        jMenuItem9.setText("Update Stock");
-        jMenu3.add(jMenuItem9);
+        updateStockMenuItem.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        updateStockMenuItem.setText("Update Stock");
+        bloodInventoryMenu.add(updateStockMenuItem);
 
-        jMenuItem10.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
-        jMenuItem10.setText("Get Stock Report");
-        jMenu3.add(jMenuItem10);
+        getStockReportMenuItem.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        getStockReportMenuItem.setText("Get Stock Report");
+        bloodInventoryMenu.add(getStockReportMenuItem);
 
-        jMenuBar1.add(jMenu3);
+        menuBar.add(bloodInventoryMenu);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -169,48 +169,48 @@ public class Menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+    private void bloodDonorsMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bloodDonorsMenuActionPerformed
         // TODO add your handling code here:
         
-    }//GEN-LAST:event_jMenu2ActionPerformed
+    }//GEN-LAST:event_bloodDonorsMenuActionPerformed
 
-    private void AddDonorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddDonorActionPerformed
+    private void addDonorMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDonorMenuItemActionPerformed
         // TODO add your handling code here:
         DonorMenu dmenu = new DonorMenu();
         Desktop.add(dmenu).setVisible(true);
-    }//GEN-LAST:event_AddDonorActionPerformed
+    }//GEN-LAST:event_addDonorMenuItemActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void addNewUserMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewUserMenuItemActionPerformed
         // TODO add your handling code here:
         NewUserForm nuf = new NewUserForm();
         Desktop.add(nuf).setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_addNewUserMenuItemActionPerformed
 
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+    private void currentStockStatusMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_currentStockStatusMenuItemActionPerformed
         // TODO add your handling code here:
         Inventory intv = new Inventory();
         Desktop.add(intv).setVisible(true);
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
+    }//GEN-LAST:event_currentStockStatusMenuItemActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem AddDonor;
     private javax.swing.JDesktopPane Desktop;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenuItem addDonorMenuItem;
+    private javax.swing.JMenuItem addNewStockMenuItem;
+    private javax.swing.JMenuItem addNewUserMenuItem;
+    private javax.swing.JMenu adminPanelMenu;
+    private javax.swing.JMenu bloodDonorsMenu;
+    private javax.swing.JMenu bloodInventoryMenu;
+    private javax.swing.JMenuItem currentStockStatusMenuItem;
+    private javax.swing.JMenuItem deleteDonorMenuItem;
+    private javax.swing.JMenuItem deleteUserMenuItem;
+    private javax.swing.JMenuItem getStockReportMenuItem;
+    private javax.swing.JMenuItem logoutMenuItem;
+    private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenu myAccountMenu;
+    private javax.swing.JMenuItem profileMenuItem;
+    private javax.swing.JMenuItem updateDonorProfileMenuItem;
+    private javax.swing.JMenuItem updateStockMenuItem;
+    private javax.swing.JMenuItem updateUserProfileMenuItem;
     // End of variables declaration//GEN-END:variables
 }
