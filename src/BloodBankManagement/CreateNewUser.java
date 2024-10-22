@@ -113,7 +113,7 @@ public class CreateNewUser extends javax.swing.JInternalFrame {
         jButton6.setBackground(new java.awt.Color(255, 0, 0));
         jButton6.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("exit");
+        jButton6.setText("Exit");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
