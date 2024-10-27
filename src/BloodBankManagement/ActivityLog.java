@@ -4,11 +4,12 @@
  */
 package BloodBankManagement;
 
+//Read files
 import java.io.File;  // Import the File class
 import java.io.FileNotFoundException;  // Import this class to handle errors
 import java.util.Scanner; // Import the Scanner class to read text files
 
-//TEMP
+//Write files
 import java.io.FileWriter;   // Import the FileWriter class
 import java.io.IOException;  // Import the IOException class to handle errors
 
@@ -26,11 +27,13 @@ public class ActivityLog extends javax.swing.JInternalFrame {
     }
     
     
-    // MY FUNCTION
-    //Read the text from the activityLog file
+    // Paul's functions
+    
+    //Read the text from the activityLog.txt file
     //Save that line-to-line
     //Then change the text of the activityLogTextAre
-    private boolean updateActivityLog(){
+    //Returns a boolean, true if successful, false if unsuccessful
+    private boolean updateActivityLogComponent(){
         
         try {
             File activityLogFile = new File("activityLog.txt");
@@ -54,6 +57,24 @@ public class ActivityLog extends javax.swing.JInternalFrame {
         
         return true;
     }
+    
+    
+    //Take a parameter String input
+    //Write this input to the activityLog.txt file
+    //Returns a boolean, true if successful, false if unsuccessful
+    public static boolean writeToActivityLogFile(String message){
+        
+        try{
+            //'true' flag tells the fileWriter not to overwrite the file
+            FileWriter myWriter = new FileWriter("activityLog.txt", true);
+            myWriter.write(message + "\n");
+            myWriter.close();
+            return true;
+        } catch(IOException e){
+            //Display error
+            return false;
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -68,6 +89,7 @@ public class ActivityLog extends javax.swing.JInternalFrame {
         activityLogTextArea = new javax.swing.JTextArea();
         exitButton = new javax.swing.JButton();
         updateButton = new javax.swing.JButton();
+        clearButton = new javax.swing.JButton();
 
         activityLogPanel.setBackground(new java.awt.Color(239, 245, 250));
         activityLogPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Activity Log", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Bahnschrift", 0, 16), new java.awt.Color(204, 0, 0))); // NOI18N
@@ -90,9 +112,9 @@ public class ActivityLog extends javax.swing.JInternalFrame {
         activityLogPanelLayout.setHorizontalGroup(
             activityLogPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(activityLogPanelLayout.createSequentialGroup()
-                .addGap(0, 7, Short.MAX_VALUE)
+                .addGap(0, 6, Short.MAX_VALUE)
                 .addComponent(activityLogTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 7, Short.MAX_VALUE))
+                .addGap(0, 5, Short.MAX_VALUE))
         );
         activityLogPanelLayout.setVerticalGroup(
             activityLogPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,6 +142,15 @@ public class ActivityLog extends javax.swing.JInternalFrame {
             }
         });
 
+        clearButton.setBackground(new java.awt.Color(230, 166, 62));
+        clearButton.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        clearButton.setText("Clear");
+        clearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -131,7 +162,9 @@ public class ActivityLog extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addComponent(updateButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(50, 50, 50)
+                .addComponent(clearButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(exitButton)
                 .addGap(25, 25, 25))
         );
@@ -143,7 +176,8 @@ public class ActivityLog extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(exitButton)
-                    .addComponent(updateButton))
+                    .addComponent(updateButton)
+                    .addComponent(clearButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -170,18 +204,39 @@ public class ActivityLog extends javax.swing.JInternalFrame {
         }
         */
         
-        updateActivityLog();
+        updateActivityLogComponent();
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void activityLogTextAreaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_activityLogTextAreaPropertyChange
         // TODO add your handling code here:z
-        updateActivityLog();
+        updateActivityLogComponent();
     }//GEN-LAST:event_activityLogTextAreaPropertyChange
+
+    private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
+        // TODO add your handling code here:
+        
+        //Sould ONLY be AVAILABLE WITH ADMIN CLEARENCE
+        //Set visible false if not admin
+        
+        try{
+            //Use 'false' flag to ensure the file is overwritten
+            FileWriter myOverwriter = new FileWriter("activityLog.txt", false);
+            myOverwriter.write("");
+            myOverwriter.close();
+        } catch(IOException e){
+            //Display error
+        }
+        
+        //Update activityLogTextArea
+        updateActivityLogComponent();        
+        
+    }//GEN-LAST:event_clearButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel activityLogPanel;
     private javax.swing.JTextArea activityLogTextArea;
+    private javax.swing.JButton clearButton;
     private javax.swing.JButton exitButton;
     private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
