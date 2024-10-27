@@ -32,6 +32,7 @@ public class Menu extends javax.swing.JFrame {
         addNewUserMenuItem = new javax.swing.JMenuItem();
         deleteUserMenuItem = new javax.swing.JMenuItem();
         updateUserProfileMenuItem = new javax.swing.JMenuItem();
+        activityLogMenuItem = new javax.swing.JMenuItem();
         myAccountMenu = new javax.swing.JMenu();
         profileMenuItem = new javax.swing.JMenuItem();
         logoutMenuItem = new javax.swing.JMenuItem();
@@ -80,6 +81,15 @@ public class Menu extends javax.swing.JFrame {
         updateUserProfileMenuItem.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         updateUserProfileMenuItem.setText("Update user Profile");
         adminPanelMenu.add(updateUserProfileMenuItem);
+
+        activityLogMenuItem.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        activityLogMenuItem.setText("Activity Log");
+        activityLogMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                activityLogMenuItemActionPerformed(evt);
+            }
+        });
+        adminPanelMenu.add(activityLogMenuItem);
 
         menuBar.add(adminPanelMenu);
 
@@ -192,9 +202,16 @@ public class Menu extends javax.swing.JFrame {
         Desktop.add(intv).setVisible(true);
     }//GEN-LAST:event_currentStockStatusMenuItemActionPerformed
 
+    private void activityLogMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activityLogMenuItemActionPerformed
+        // TODO add your handling code here:
+        ActivityLog activityLog = new ActivityLog();
+        Desktop.add(activityLog).setVisible(true);
+    }//GEN-LAST:event_activityLogMenuItemActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane Desktop;
+    private javax.swing.JMenuItem activityLogMenuItem;
     private javax.swing.JMenuItem addDonorMenuItem;
     private javax.swing.JMenuItem addNewStockMenuItem;
     private javax.swing.JMenuItem addNewUserMenuItem;

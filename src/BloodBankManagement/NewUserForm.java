@@ -4,6 +4,8 @@
  */
 package BloodBankManagement;
 
+import BloodBankManagement.ActivityLog;
+
 /**
  *
  * @author Souleymane.Sono
@@ -295,6 +297,7 @@ public class NewUserForm extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         //JOptionPane.showConfirmDialog(this, "Added", JOptionPane.OK_CANCEL_OPTION);   OLD
         
+        //Take input
         firstName = firstNameTextField.getText();
         lastName = lastNameTextField.getText();
         middleName = middleNameTextField.getText();
@@ -307,6 +310,25 @@ public class NewUserForm extends javax.swing.JInternalFrame {
         
         username = usernameTextField.getText();
         password = passwordTextField.getText();
+        
+        
+        //Clear text fields
+        firstNameTextField.setText("");
+        lastNameTextField.setText("");
+        middleNameTextField.setText("");
+        
+        accountStatusComboBox.setSelectedIndex(0);
+        roleTypeComboBox.setSelectedIndex(0);
+        
+        emailTextField.setText("");
+        telephoneTextField.setText("");
+        
+        usernameTextField.setText("");
+        passwordTextField.setText("");
+        
+        
+        //Write action to log
+        ActivityLog.writeToActivityLogFile("Added user: " + username);
         
         
     }//GEN-LAST:event_addButtonActionPerformed
