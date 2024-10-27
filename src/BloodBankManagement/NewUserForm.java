@@ -5,6 +5,7 @@
 package BloodBankManagement;
 
 import BloodBankManagement.ActivityLog;
+import BloodBankManagement.LoginPage;
 
 /**
  *
@@ -26,6 +27,9 @@ public class NewUserForm extends javax.swing.JInternalFrame {
     private String username;
     private String password;
     
+    private int userID;
+    
+    private static int userIDCounter = 01;
     
     
     /**
@@ -80,7 +84,7 @@ public class NewUserForm extends javax.swing.JInternalFrame {
         firstNameLabel.setText("First Name:*");
 
         accountStatusLabel.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
-        accountStatusLabel.setText("Account Status:");
+        accountStatusLabel.setText("Account Status:*");
 
         firstNameTextField.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
         firstNameTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -95,7 +99,7 @@ public class NewUserForm extends javax.swing.JInternalFrame {
         middleNameTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         middleNameLabel.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
-        middleNameLabel.setText("Middle Name:*");
+        middleNameLabel.setText("Middle Name:");
 
         accountStatusComboBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         accountStatusComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select ", "Active", "Lock", "Unlock" }));
@@ -139,16 +143,16 @@ public class NewUserForm extends javax.swing.JInternalFrame {
         usernameTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         usernameLabel.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
-        usernameLabel.setText("Username:");
+        usernameLabel.setText("Username:*");
 
         passwordTextField.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
         passwordTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         passwordLabel.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
-        passwordLabel.setText("Password:");
+        passwordLabel.setText("Password:*");
 
         roleTypeLabel.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
-        roleTypeLabel.setText("Role Type:");
+        roleTypeLabel.setText("Role Type:*");
 
         roleTypeComboBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         roleTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select ", "Admin", "Guest User" }));
@@ -157,6 +161,11 @@ public class NewUserForm extends javax.swing.JInternalFrame {
         clearButton.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
         clearButton.setForeground(new java.awt.Color(255, 255, 255));
         clearButton.setText("Clear");
+        clearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout personalDetailsPanelLayout = new javax.swing.GroupLayout(personalDetailsPanel);
         personalDetailsPanel.setLayout(personalDetailsPanelLayout);
@@ -183,9 +192,9 @@ public class NewUserForm extends javax.swing.JInternalFrame {
                             .addComponent(lastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(personalDetailsPanelLayout.createSequentialGroup()
                         .addComponent(roleTypeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(roleTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 150, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(personalDetailsPanelLayout.createSequentialGroup()
                 .addGroup(personalDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(personalDetailsPanelLayout.createSequentialGroup()
@@ -213,7 +222,7 @@ public class NewUserForm extends javax.swing.JInternalFrame {
                                 .addComponent(addButton)
                                 .addGap(53, 53, 53)
                                 .addComponent(clearButton)))))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, personalDetailsPanelLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(exitButton)
@@ -262,7 +271,7 @@ public class NewUserForm extends javax.swing.JInternalFrame {
                 .addGroup(personalDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addButton)
                     .addComponent(clearButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addComponent(exitButton)
                 .addGap(25, 25, 25))
         );
@@ -312,6 +321,28 @@ public class NewUserForm extends javax.swing.JInternalFrame {
         password = passwordTextField.getText();
         
         
+        //Ensure fulfilled requirements
+        if(firstName.equals("")){
+            return; //No first name
+        } else if(lastName.equals("")){
+            return; //No last name
+        } else if(accountStatus.equals("Select")){
+            return; //Invalid account status
+        } else if(roleType.equals("Select")){
+            return; //Invalid role type
+        } else if(username.equals("")){
+            return; //No username
+        } else if(LoginPage.passwordHashMap.containsKey(username)){
+            return; //User already exists
+        } else if(password.equals("")){
+            return; //No password
+        }
+        
+        //Add user and increment userIDCounter
+        LoginPage.passwordHashMap.put(username, password);
+        LoginPage.userHashMap.put(username, new User(firstName, lastName, middleName, accountStatus, roleType,
+                                                     email, phoneNumber, username, password, userIDCounter++));
+        
         //Clear text fields
         firstNameTextField.setText("");
         lastNameTextField.setText("");
@@ -325,7 +356,7 @@ public class NewUserForm extends javax.swing.JInternalFrame {
         
         usernameTextField.setText("");
         passwordTextField.setText("");
-        
+                
         
         //Write action to log
         ActivityLog.writeToActivityLogFile("Added user: " + username);
@@ -341,6 +372,22 @@ public class NewUserForm extends javax.swing.JInternalFrame {
     private void accountStatusComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountStatusComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_accountStatusComboBoxActionPerformed
+
+    private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
+        //Clear text fields
+        firstNameTextField.setText("");
+        lastNameTextField.setText("");
+        middleNameTextField.setText("");
+        
+        accountStatusComboBox.setSelectedIndex(0);
+        roleTypeComboBox.setSelectedIndex(0);
+        
+        emailTextField.setText("");
+        telephoneTextField.setText("");
+        
+        usernameTextField.setText("");
+        passwordTextField.setText("");
+    }//GEN-LAST:event_clearButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

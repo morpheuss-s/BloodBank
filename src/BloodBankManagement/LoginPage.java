@@ -1,7 +1,10 @@
 
 package BloodBankManagement;
 
+import java.util.HashMap;
+
 import BloodBankManagement.ActivityLog;
+import BloodBankManagement.User;
 /**
  *
  * @author souleymane.sono
@@ -15,8 +18,25 @@ public class LoginPage extends javax.swing.JFrame {
         initComponents();
     }
     
-    //Paul's variables
+        //Paul's variables
     
+    //Currently saving passwords to a hashmap to access password w/username
+    //Currently saving users to a hashmap to access user w/username
+    //This is slightly redundant, I could just use 1 hashmap (userHashMap) but it makes the code easier to read
+    public static HashMap<String, String> passwordHashMap = new HashMap<>(); //Username-password
+    public static HashMap<String, User> userHashMap = new HashMap<>(); //Username-user
+    
+    public static String currentUser; //Current user
+    private static boolean admin; //admin clearence
+    
+    //Build admin user
+    static{
+        User adminUser = new User("Admin", "Admin", "Admin", "Active", "Admin", "admin@avengeBBM.org",
+                                  "248-292-9706", "Admin", "adminPass", 0);
+        
+        passwordHashMap.put("Admin", "adminPass");
+        userHashMap.put("Admin", adminUser);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -84,7 +104,6 @@ public class LoginPage extends javax.swing.JFrame {
         usernameTextField.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
 
         passwordField.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
-        passwordField.setText("jPasswordField1");
 
         loginButton.setBackground(new java.awt.Color(204, 0, 0));
         loginButton.setFont(new java.awt.Font("Book Antiqua", 1, 18)); // NOI18N
@@ -146,13 +165,46 @@ public class LoginPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        //Write action to activityLog.txt
-        ActivityLog.writeToActivityLogFile("Logged in user: " + usernameTextField.getText());
+        //Take input from loginUserTextField and loginPasswordField converting the laters' char[] to String
+        String usernameInput = usernameTextField.getText();
+        String passwordInput = new String(passwordField.getPassword());
         
-        //Create menu
-        Menu mm = new Menu();
-        mm.setVisible(true);
-        dispose();
+        //First check that the user exists and if it does that the password matches
+        if(passwordHashMap.get(usernameInput) == null || (!passwordHashMap.get(usernameInput).equals(passwordInput))){
+            //Failure message
+            
+            //Reset fields
+            usernameTextField.setText("");
+            passwordField.setText("");
+        } else{
+            //Set user & clear input fields
+            currentUser = usernameInput;
+            
+            //TODO: Set currentUser label
+
+            //Set clearence level
+            admin = (currentUser.equals("Admin")) ? true: false;
+            
+            //Set admin-only visiblilty to relevant components
+            
+            //Write action to activityLog.txt
+            ActivityLog.writeToActivityLogFile("Logged in user: " + usernameTextField.getText());
+            
+            //Reset fields
+            usernameTextField.setText("");
+            passwordField.setText("");
+            
+            //Create menu
+            Menu mm = new Menu();
+            mm.setVisible(true);
+            dispose();
+        }
+
+
+
+        
+        
+       
        
        
     }//GEN-LAST:event_loginButtonActionPerformed
