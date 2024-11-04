@@ -1,7 +1,10 @@
 
 package BloodBankManagement;
 
+import java.util.HashMap;
+
 import BloodBankManagement.ActivityLog;
+import BloodBankManagement.User;
 /**
  *
  * @author souleymane.sono
@@ -13,9 +16,40 @@ public class LoginPage extends javax.swing.JFrame {
      */
     public LoginPage() {
         initComponents();
+        errorOptionPane.setVisible(false);
     }
     
-    //Paul's variables
+        //Paul's variables
+    
+    //Currently saving users to a hashmap to access user w/username
+    public static HashMap<String, User> userHashMap = new HashMap<>(); //Username-user
+    
+    public static String currentUser; //Current user
+    private static boolean admin; //admin clearence
+    
+    //Initialize admin user
+    static{
+        User adminUser = new User("Admin", "Admin", "Admin", "Active", "Admin", "admin@avengeBBM.org",
+                                  "248-292-9706", "Admin", "adminPass", 0);
+        
+        userHashMap.put("Admin", adminUser);
+    }
+    
+    
+        //Paul's methods
+
+    //Show errorOptionPane and set text
+    private void showError(String errorMessage){
+        errorOptionPane.setMessage(errorMessage);
+        errorOptionPane.setVisible(true);
+        
+        try{
+            errorOptionPane.createDialog("Error").setVisible(true);
+        } catch(Exception e){
+            //Handle HeadlessException
+        }
+        
+    }
     
 
     /**
@@ -37,6 +71,7 @@ public class LoginPage extends javax.swing.JFrame {
         passwordField = new javax.swing.JPasswordField();
         loginButton = new javax.swing.JButton();
         userImageLabel = new javax.swing.JLabel();
+        errorOptionPane = new javax.swing.JOptionPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -84,7 +119,6 @@ public class LoginPage extends javax.swing.JFrame {
         usernameTextField.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
 
         passwordField.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
-        passwordField.setText("jPasswordField1");
 
         loginButton.setBackground(new java.awt.Color(204, 0, 0));
         loginButton.setFont(new java.awt.Font("Book Antiqua", 1, 18)); // NOI18N
@@ -103,6 +137,10 @@ public class LoginPage extends javax.swing.JFrame {
 
         userImageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngegg (31).png"))); // NOI18N
 
+        errorOptionPane.setForeground(new java.awt.Color(204, 0, 51));
+        errorOptionPane.setToolTipText("");
+        errorOptionPane.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+
         javax.swing.GroupLayout rightInputPaneLayout = new javax.swing.GroupLayout(rightInputPane);
         rightInputPane.setLayout(rightInputPaneLayout);
         rightInputPaneLayout.setHorizontalGroup(
@@ -111,15 +149,19 @@ public class LoginPage extends javax.swing.JFrame {
                 .addGap(45, 45, 45)
                 .addGroup(rightInputPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(userImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(rightInputPaneLayout.createSequentialGroup()
-                        .addGroup(rightInputPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(passwordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
-                        .addGroup(rightInputPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(usernameTextField)
-                            .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE))))
+                    .addGroup(rightInputPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(rightInputPaneLayout.createSequentialGroup()
+                            .addComponent(errorOptionPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                            .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(rightInputPaneLayout.createSequentialGroup()
+                            .addGroup(rightInputPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(passwordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(26, 26, 26)
+                            .addGroup(rightInputPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(usernameTextField)
+                                .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)))))
                 .addContainerGap(138, Short.MAX_VALUE))
         );
         rightInputPaneLayout.setVerticalGroup(
@@ -135,9 +177,14 @@ public class LoginPage extends javax.swing.JFrame {
                 .addGroup(rightInputPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(passwordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addGroup(rightInputPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(rightInputPaneLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(rightInputPaneLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(errorOptionPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         getContentPane().add(rightInputPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(809, 0, -1, -1));
@@ -146,24 +193,58 @@ public class LoginPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        //Take input from loginUserTextField and loginPasswordField converting the laters' char[] to String
+        String usernameInput = usernameTextField.getText();
+        String passwordInput = new String(passwordField.getPassword());
+        
+        //First check that the user exists and if it does that the password matches
+        if(userHashMap.get(usernameInput) == null){            
+            //Failure message
+            showError("This user does not exist.");
+            
+            //Reset fields
+            usernameTextField.setText("");
+            passwordField.setText("");
+            
+            return;
+        } else if(!userHashMap.get(usernameInput).getPassword().equals(passwordInput)){
+            //Failure message
+            showError("Username and password do not match.");
+            
+            //Reset fields
+            usernameTextField.setText("");
+            passwordField.setText("");
+            
+            return;
+        }
+        
+            //Username/password is valid
+
+        //Set user & clear input fields
+        currentUser = usernameInput;
+
+        //TODO: Set currentUser label
+
+        //Set clearence level
+        admin = (currentUser.equals("Admin")) ? true: false;
+
+        //Set admin-only visiblilty to relevant components
+
         //Write action to activityLog.txt
         ActivityLog.writeToActivityLogFile("Logged in user: " + usernameTextField.getText());
-        
+
+        //Reset fields
+        usernameTextField.setText("");
+        passwordField.setText("");
+
         //Create menu
         Menu mm = new Menu();
         mm.setVisible(true);
         dispose();
-       
-       
     }//GEN-LAST:event_loginButtonActionPerformed
        
     private void loginButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButtonMouseClicked
         // TODO add your handling code here:
-        //Menu mm = new Menu();
-        //mm.setVisible(true);
-        
-        //Paul: Commented out these since it was creating 2 internal frames when logging in
-      
     }//GEN-LAST:event_loginButtonMouseClicked
 
     /**
@@ -203,6 +284,7 @@ public class LoginPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bloodImageLabel;
+    private javax.swing.JOptionPane errorOptionPane;
     private javax.swing.JPanel leftImagePanel;
     private javax.swing.JButton loginButton;
     private javax.swing.JPasswordField passwordField;

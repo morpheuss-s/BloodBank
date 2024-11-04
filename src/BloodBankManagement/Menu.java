@@ -4,6 +4,9 @@
  */
 package BloodBankManagement;
 
+import BloodBankManagement.LoginPage;
+import BloodBankManagement.ActivityLog;
+
 /**
  *
  * @author Souleymane.Sono
@@ -102,6 +105,11 @@ public class Menu extends javax.swing.JFrame {
 
         logoutMenuItem.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         logoutMenuItem.setText("Logout");
+        logoutMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutMenuItemActionPerformed(evt);
+            }
+        });
         myAccountMenu.add(logoutMenuItem);
 
         menuBar.add(myAccountMenu);
@@ -207,6 +215,16 @@ public class Menu extends javax.swing.JFrame {
         ActivityLog activityLog = new ActivityLog();
         Desktop.add(activityLog).setVisible(true);
     }//GEN-LAST:event_activityLogMenuItemActionPerformed
+
+    private void logoutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutMenuItemActionPerformed
+        //Write action to log
+        ActivityLog.writeToActivityLogFile("Logged out user: " + LoginPage.currentUser);
+        
+        LoginPage.currentUser = null;
+        LoginPage loginNow = new LoginPage();
+        loginNow.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_logoutMenuItemActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
