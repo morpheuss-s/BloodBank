@@ -24,6 +24,7 @@ public class User {
     private String password;
     
     private int userID;
+    private boolean active;
     
     
         //Constructor
@@ -44,10 +45,14 @@ public class User {
         this.password = password;
         
         this.userID = userID;
+        active = false;
     }
     
     
         //Methods
+    public void setActive(boolean bool){
+        active = bool;
+    }
     
     //Getters
     public String getFirstName(){
@@ -89,4 +94,10 @@ public class User {
     public int getUserID(){
         return userID;
     }
+    
+    public boolean getActive(){
+        return active;
+    }
+    
+    
 }

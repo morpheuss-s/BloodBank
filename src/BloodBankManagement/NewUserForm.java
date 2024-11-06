@@ -119,7 +119,7 @@ public class NewUserForm extends javax.swing.JInternalFrame {
         middleNameLabel.setText("Middle Name:");
 
         accountStatusComboBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
-        accountStatusComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Active", "Lock", "Unlock" }));
+        accountStatusComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Locked", "Unlocked" }));
         accountStatusComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 accountStatusComboBoxActionPerformed(evt);
@@ -172,7 +172,7 @@ public class NewUserForm extends javax.swing.JInternalFrame {
         roleTypeLabel.setText("Role Type:*");
 
         roleTypeComboBox.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
-        roleTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Admin", "Guest User" }));
+        roleTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Admin", "Employee", "Guest" }));
 
         clearButton.setBackground(new java.awt.Color(255, 0, 0));
         clearButton.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
@@ -366,9 +366,7 @@ public class NewUserForm extends javax.swing.JInternalFrame {
             showError("Password is required.");
             return; //No password
         }
-        
-        //NOTE: CURRENTLY 'role' and 'account status' won't send an error message
-        
+                
         //Add user and increment userIDCounter
         LoginPage.userHashMap.put(username, new User(firstName, lastName, middleName, accountStatus, roleType,
                                                      email, phoneNumber, username, password, userIDCounter++));
@@ -387,7 +385,6 @@ public class NewUserForm extends javax.swing.JInternalFrame {
         usernameTextField.setText("");
         passwordTextField.setText("");
                 
-        
         //Write action to log
         ActivityLog.writeToActivityLogFile("Added user: " + username);
         

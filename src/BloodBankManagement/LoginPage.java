@@ -24,12 +24,12 @@ public class LoginPage extends javax.swing.JFrame {
     //Currently saving users to a hashmap to access user w/username
     public static HashMap<String, User> userHashMap = new HashMap<>(); //Username-user
     
-    public static String currentUser; //Current user
+    public static String currentUsername; //Current user
     private static boolean admin; //admin clearence
     
     //Initialize admin user
     static{
-        User adminUser = new User("Admin", "Admin", "Admin", "Active", "Admin", "admin@avengeBBM.org",
+        User adminUser = new User("Admin", "Admin", "Admin", "Unlocked", "Admin", "admin@avengeBBM.org",
                                   "248-292-9706", "Admin", "adminPass", 0);
         
         userHashMap.put("Admin", adminUser);
@@ -197,7 +197,8 @@ public class LoginPage extends javax.swing.JFrame {
         String usernameInput = usernameTextField.getText();
         String passwordInput = new String(passwordField.getPassword());
         
-        //First check that the user exists and if it does that the password matches
+        //Ensure validity
+        //User exists, password matches, and user is not locked
         if(userHashMap.get(usernameInput) == null){            
             //Failure message
             showError("This user does not exist.");
@@ -216,17 +217,27 @@ public class LoginPage extends javax.swing.JFrame {
             passwordField.setText("");
             
             return;
+        } else if(userHashMap.get(usernameInput).getAccountStatus().equals("Locked")){
+            //Failure message
+            showError("This user is locked.");
+            
+            //Reset fields
+            usernameTextField.setText("");
+            passwordField.setText("");
+            
+            return;
         }
         
             //Username/password is valid
 
         //Set user & clear input fields
-        currentUser = usernameInput;
+        currentUsername = usernameInput;
+        userHashMap.get(currentUsername).setActive(true);
 
-        //TODO: Set currentUser label
+        //TODO: Set currentUsername label
 
         //Set clearence level
-        admin = (currentUser.equals("Admin")) ? true: false;
+        admin = (currentUsername.equals("Admin")) ? true: false;
 
         //Set admin-only visiblilty to relevant components
 
