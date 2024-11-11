@@ -86,6 +86,7 @@ public class ActivityLog extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         activityLogPanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
         activityLogTextArea = new javax.swing.JTextArea();
         exitButton = new javax.swing.JButton();
         updateButton = new javax.swing.JButton();
@@ -95,7 +96,6 @@ public class ActivityLog extends javax.swing.JInternalFrame {
         activityLogPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Activity Log", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Bahnschrift", 0, 16), new java.awt.Color(204, 0, 0))); // NOI18N
 
         activityLogTextArea.setEditable(false);
-        activityLogTextArea.setBackground(new java.awt.Color(255, 255, 255));
         activityLogTextArea.setColumns(20);
         activityLogTextArea.setLineWrap(true);
         activityLogTextArea.setRows(5);
@@ -106,22 +106,23 @@ public class ActivityLog extends javax.swing.JInternalFrame {
                 activityLogTextAreaPropertyChange(evt);
             }
         });
+        jScrollPane1.setViewportView(activityLogTextArea);
 
         javax.swing.GroupLayout activityLogPanelLayout = new javax.swing.GroupLayout(activityLogPanel);
         activityLogPanel.setLayout(activityLogPanelLayout);
         activityLogPanelLayout.setHorizontalGroup(
             activityLogPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(activityLogPanelLayout.createSequentialGroup()
-                .addGap(0, 6, Short.MAX_VALUE)
-                .addComponent(activityLogTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 5, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         activityLogPanelLayout.setVerticalGroup(
             activityLogPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(activityLogPanelLayout.createSequentialGroup()
-                .addGap(0, 11, Short.MAX_VALUE)
-                .addComponent(activityLogTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 11, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         exitButton.setBackground(new java.awt.Color(255, 0, 0));
@@ -160,25 +161,25 @@ public class ActivityLog extends javax.swing.JInternalFrame {
                 .addComponent(activityLogPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addContainerGap(30, Short.MAX_VALUE)
                 .addComponent(updateButton)
-                .addGap(50, 50, 50)
+                .addGap(66, 66, 66)
                 .addComponent(clearButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addGap(66, 66, 66)
                 .addComponent(exitButton)
-                .addGap(25, 25, 25))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(activityLogPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(exitButton)
                     .addComponent(updateButton)
                     .addComponent(clearButton))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pack();
@@ -238,6 +239,7 @@ public class ActivityLog extends javax.swing.JInternalFrame {
     private javax.swing.JTextArea activityLogTextArea;
     private javax.swing.JButton clearButton;
     private javax.swing.JButton exitButton;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
 }

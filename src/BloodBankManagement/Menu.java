@@ -62,7 +62,6 @@ public class Menu extends javax.swing.JFrame {
             .addGap(0, 943, Short.MAX_VALUE)
         );
 
-        menuBar.setBackground(new java.awt.Color(204, 0, 0));
         menuBar.setPreferredSize(new java.awt.Dimension(472, 40));
 
         adminPanelMenu.setText("Admin Panel");
@@ -79,10 +78,20 @@ public class Menu extends javax.swing.JFrame {
 
         deleteUserMenuItem.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         deleteUserMenuItem.setText("Delete User");
+        deleteUserMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteUserMenuItemActionPerformed(evt);
+            }
+        });
         adminPanelMenu.add(deleteUserMenuItem);
 
         updateUserProfileMenuItem.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
-        updateUserProfileMenuItem.setText("Update user Profile");
+        updateUserProfileMenuItem.setText("Update User Profile");
+        updateUserProfileMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateUserProfileMenuItemActionPerformed(evt);
+            }
+        });
         adminPanelMenu.add(updateUserProfileMenuItem);
 
         activityLogMenuItem.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
@@ -218,13 +227,27 @@ public class Menu extends javax.swing.JFrame {
 
     private void logoutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutMenuItemActionPerformed
         //Write action to log
-        ActivityLog.writeToActivityLogFile("Logged out user: " + LoginPage.currentUser);
+        ActivityLog.writeToActivityLogFile("Logged out user: " + LoginPage.currentUsername);
         
-        LoginPage.currentUser = null;
+        //Logout
+        LoginPage.userHashMap.get(LoginPage.currentUsername).setActive(false);
+        LoginPage.currentUsername = null;
+        
+        //Open login menu
         LoginPage loginNow = new LoginPage();
         loginNow.setVisible(true);
         dispose();
     }//GEN-LAST:event_logoutMenuItemActionPerformed
+
+    private void deleteUserMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserMenuItemActionPerformed
+        DeleteUser deleteUser = new DeleteUser();
+        Desktop.add(deleteUser).setVisible(true);
+    }//GEN-LAST:event_deleteUserMenuItemActionPerformed
+
+    private void updateUserProfileMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateUserProfileMenuItemActionPerformed
+        UpdateUserProfile uup = new UpdateUserProfile();
+        Desktop.add(uup).setVisible(true);
+    }//GEN-LAST:event_updateUserProfileMenuItemActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
