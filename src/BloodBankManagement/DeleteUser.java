@@ -24,12 +24,12 @@ public class DeleteUser extends javax.swing.JInternalFrame {
       //PAUL'S FUNCTIONS
     
     //Show errorOptionPane and set text
-    private void showError(String errorMessage){
-        errorOptionPane.setMessage(errorMessage);
+    private void showError(String message, String title){
+        errorOptionPane.setMessage(message);
         errorOptionPane.setVisible(true);
         
         try{
-            errorOptionPane.createDialog("Error").setVisible(true);
+            errorOptionPane.createDialog(title).setVisible(true);
         } catch(Exception e){
             //handle exception, HeadlessException
         }
@@ -164,21 +164,21 @@ public class DeleteUser extends javax.swing.JInternalFrame {
         
         //Ensure validity
         if(LoginPage.userHashMap.get(deleteUsername) == null){
-            showError("This user does not exist.");
+            showError("This user does not exist.", "User Verification Error");
             return;
         } else if(LoginPage.userHashMap.get(deleteUsername).getActive()){
             //THIS DOESN'T WORK, IDK WHY
             //WON'T SEND AN ERROR WHEN THE USERNAME DOESN'T EXIST
-            showError("Cannot delete current user.");
+            showError("Cannot delete current user.", "User Verification Error");
             return;
         } else if(!LoginPage.userHashMap.get(LoginPage.currentUsername).getPassword().equals(currentPassword)){
-            showError("Password is incorrect.");
+            showError("Password is incorrect.", "User Verification Error");
             return;
         } else if(!LoginPage.userHashMap.get(LoginPage.currentUsername).getRoleType().equals("Admin")){
-            showError("You do not have admin permission.");
+            showError("You do not have admin permission.", "User Verification Error");
             return;
         } else if(deleteUsername.equals("Admin")){
-            showError("Cannot delete the Admin user.");
+            showError("Cannot delete the Admin user.", "User Verification Error");
             return;
         }
         

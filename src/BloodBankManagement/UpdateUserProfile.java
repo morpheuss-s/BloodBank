@@ -48,12 +48,12 @@ public class UpdateUserProfile extends javax.swing.JInternalFrame {
         //PAUL'S METHODS
     
     //Show errorOptionPane and set text
-    private void showError(String errorMessage){
-        errorOptionPane.setMessage(errorMessage);
+    private void showError(String message, String title){
+        errorOptionPane.setMessage(message);
         errorOptionPane.setVisible(true);
         
         try{
-            errorOptionPane.createDialog("Error").setVisible(true);
+            errorOptionPane.createDialog(title).setVisible(true);
         } catch(Exception e){
             //handle exception, HeadlessException
         }
@@ -400,23 +400,23 @@ public class UpdateUserProfile extends javax.swing.JInternalFrame {
         
         //Ensure Validity
         if(!currentUser.getPassword().equals(currentUserPassword)){
-            showError("Incorrect password.");
+            showError("Incorrect password.", "User Verification Error");
             editUsername = null;
             return;
         } else if(editUser == null){
-            showError("User does not exist.");
+            showError("User does not exist.", "Input Validity Error");
             editUsername = null;
             return;
         } else if(!currentUser.getRoleType().equals("Admin")){
-            showError("You do not have admin permission.");
+            showError("You do not have admin permission.", "User Verification Error");
             editUsername = null;
             return;
         } else if(editUser.getAccountStatus().equals("Locked")){
-            showError("This user is locked.");
+            showError("This user is locked.", "Input Validity Error");
             editUsername = null;
             return;
         } else if(editUser.getActive()){
-            showError("Cannot edit the active user.");
+            showError("Cannot edit the active user.", "User Verification Error");
             editUsername = null;
             return;
         }
@@ -486,28 +486,28 @@ public class UpdateUserProfile extends javax.swing.JInternalFrame {
 
         //Ensure fulfilled requirements
         if(firstName.equals("")){
-            showError("First name is required.");
+            showError("First name is required.", "Input Validity Error");
             return; //No first name
         } else if(lastName.equals("")){
-            showError("Last name is required.");
+            showError("Last name is required.", "Input Validity Error");
             return; //No last name
         } else if(accountStatus.equals("Select")){
-            showError("Account status is required.");
+            showError("Account status is required.", "Input Validity Error");
             return; //Invalid account status
         } else if(roleType.equals("Select")){
-            showError("Role is required.");
+            showError("Role is required.", "Input Validity Error");
             return; //Invalid role type
         } else if(username.equals("")){
-            showError("Username is required.");
+            showError("Username is required.", "Input Validity Error");
             return; //No username
         } else if(editUsername == null){
-            showError("No user chosen.");
+            showError("No user chosen.", "Input Validity Error");
             return;
         } else if(LoginPage.userHashMap.containsKey(username) && !(username.equals(editUsername))){
-            showError("Username is already taken.");
+            showError("Username is already taken.", "Input Validity Error");
             return; //Username already exists, and isn't the edited username
         } else if(password.equals("")){
-            showError("Password is required.");
+            showError("Password is required.", "Input Validity Error");
             return; //No password
         }
         

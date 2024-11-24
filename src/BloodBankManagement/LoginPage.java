@@ -2,9 +2,16 @@
 package BloodBankManagement;
 
 import java.util.HashMap;
+import java.util.Random;
 
 import BloodBankManagement.ActivityLog;
 import BloodBankManagement.User;
+
+//email
+import java.util.Properties;
+import javax.mail.*; 
+import javax.mail.internet.*; 
+import javax.activation.*; 
 /**
  *
  * @author souleymane.sono
@@ -27,9 +34,11 @@ public class LoginPage extends javax.swing.JFrame {
     public static String currentUsername; //Current user
     private static boolean admin; //admin clearence
     
+    private String authenticationCode = null;
+    
     //Initialize admin user
     static{
-        User adminUser = new User("Admin", "Admin", "Admin", "Unlocked", "Admin", "admin@avengeBBM.org",
+        User adminUser = new User("Admin", "Admin", "Admin", "Unlocked", "Admin", "paultaylor2023@gmail.com",
                                   "248-292-9706", "Admin", "adminPass", 0);
         
         userHashMap.put("Admin", adminUser);
@@ -39,12 +48,12 @@ public class LoginPage extends javax.swing.JFrame {
         //Paul's methods
 
     //Show errorOptionPane and set text
-    private void showError(String errorMessage){
-        errorOptionPane.setMessage(errorMessage);
+    private void showError(String message, String title){
+        errorOptionPane.setMessage(message);
         errorOptionPane.setVisible(true);
         
         try{
-            errorOptionPane.createDialog("Error").setVisible(true);
+            errorOptionPane.createDialog(title).setVisible(true);
         } catch(Exception e){
             //Handle HeadlessException
         }
@@ -69,9 +78,12 @@ public class LoginPage extends javax.swing.JFrame {
         usernameLabel = new javax.swing.JLabel();
         usernameTextField = new javax.swing.JTextField();
         passwordField = new javax.swing.JPasswordField();
-        loginButton = new javax.swing.JButton();
+        sendCodeButton = new javax.swing.JButton();
         userImageLabel = new javax.swing.JLabel();
         errorOptionPane = new javax.swing.JOptionPane();
+        loginCodeLabel = new javax.swing.JLabel();
+        loginCodeTextField = new javax.swing.JTextField();
+        loginButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -105,7 +117,7 @@ public class LoginPage extends javax.swing.JFrame {
                 .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(96, 96, 96)
                 .addComponent(bloodImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
 
         getContentPane().add(leftImagePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 830));
@@ -119,6 +131,32 @@ public class LoginPage extends javax.swing.JFrame {
         usernameTextField.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
 
         passwordField.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
+
+        sendCodeButton.setBackground(new java.awt.Color(204, 0, 0));
+        sendCodeButton.setFont(new java.awt.Font("Book Antiqua", 1, 18)); // NOI18N
+        sendCodeButton.setForeground(new java.awt.Color(255, 255, 255));
+        sendCodeButton.setText("Send Code");
+        sendCodeButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sendCodeButtonMouseClicked(evt);
+            }
+        });
+        sendCodeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendCodeButtonActionPerformed(evt);
+            }
+        });
+
+        userImageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngegg (31).png"))); // NOI18N
+
+        errorOptionPane.setForeground(new java.awt.Color(204, 0, 51));
+        errorOptionPane.setToolTipText("");
+        errorOptionPane.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+
+        loginCodeLabel.setFont(new java.awt.Font("Book Antiqua", 0, 24)); // NOI18N
+        loginCodeLabel.setText("Login Code:");
+
+        loginCodeTextField.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
 
         loginButton.setBackground(new java.awt.Color(204, 0, 0));
         loginButton.setFont(new java.awt.Font("Book Antiqua", 1, 18)); // NOI18N
@@ -135,56 +173,70 @@ public class LoginPage extends javax.swing.JFrame {
             }
         });
 
-        userImageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngegg (31).png"))); // NOI18N
-
-        errorOptionPane.setForeground(new java.awt.Color(204, 0, 51));
-        errorOptionPane.setToolTipText("");
-        errorOptionPane.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
-
         javax.swing.GroupLayout rightInputPaneLayout = new javax.swing.GroupLayout(rightInputPane);
         rightInputPane.setLayout(rightInputPaneLayout);
         rightInputPaneLayout.setHorizontalGroup(
             rightInputPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rightInputPaneLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addComponent(errorOptionPane, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightInputPaneLayout.createSequentialGroup()
                 .addGroup(rightInputPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(userImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(rightInputPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(rightInputPaneLayout.createSequentialGroup()
-                            .addComponent(errorOptionPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
-                            .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(rightInputPaneLayout.createSequentialGroup()
+                    .addGroup(rightInputPaneLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(loginButton))
+                    .addGroup(rightInputPaneLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(sendCodeButton))
+                    .addGroup(rightInputPaneLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(rightInputPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(rightInputPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(passwordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(26, 26, 26)
-                            .addGroup(rightInputPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(usernameTextField)
-                                .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)))))
-                .addContainerGap(138, Short.MAX_VALUE))
+                                .addGroup(rightInputPaneLayout.createSequentialGroup()
+                                    .addComponent(loginCodeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(loginCodeTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE))
+                                .addGroup(rightInputPaneLayout.createSequentialGroup()
+                                    .addGroup(rightInputPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(passwordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(26, 26, 26)
+                                    .addGroup(rightInputPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(usernameTextField)
+                                        .addComponent(passwordField))))
+                            .addGroup(rightInputPaneLayout.createSequentialGroup()
+                                .addComponent(userImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)))))
+                .addGap(105, 105, 105))
         );
         rightInputPaneLayout.setVerticalGroup(
             rightInputPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rightInputPaneLayout.createSequentialGroup()
                 .addGap(143, 143, 143)
                 .addComponent(userImageLabel)
-                .addGap(18, 18, 18)
-                .addGroup(rightInputPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(rightInputPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(rightInputPaneLayout.createSequentialGroup()
+                        .addComponent(usernameTextField)
+                        .addGap(1, 1, 1)))
                 .addGap(31, 31, 31)
                 .addGroup(rightInputPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(passwordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(rightInputPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(sendCodeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addGroup(rightInputPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(loginCodeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(rightInputPaneLayout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(rightInputPaneLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(errorOptionPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(44, Short.MAX_VALUE))
+                        .addComponent(loginCodeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(1, 1, 1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addComponent(errorOptionPane, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         getContentPane().add(rightInputPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(809, 0, -1, -1));
@@ -192,35 +244,28 @@ public class LoginPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+    private void sendCodeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendCodeButtonActionPerformed
         //Take input from loginUserTextField and loginPasswordField converting the laters' char[] to String
         String usernameInput = usernameTextField.getText();
         String passwordInput = new String(passwordField.getPassword());
         
+        boolean valid = true;
+        
         //Ensure validity
         //User exists, password matches, and user is not locked
         if(userHashMap.get(usernameInput) == null){            
-            //Failure message
-            showError("This user does not exist.");
-            
-            //Reset fields
-            usernameTextField.setText("");
-            passwordField.setText("");
-            
-            return;
+            showError("This user does not exist.", "User Verification Error");
+            valid = false;
         } else if(!userHashMap.get(usernameInput).getPassword().equals(passwordInput)){
-            //Failure message
-            showError("Username and password do not match.");
-            
-            //Reset fields
-            usernameTextField.setText("");
-            passwordField.setText("");
-            
-            return;
+            showError("Username and password do not match.", "User Verification Error");
+            valid = false;
         } else if(userHashMap.get(usernameInput).getAccountStatus().equals("Locked")){
-            //Failure message
-            showError("This user is locked.");
-            
+            showError("This user is locked.", "User Verification Error");
+            valid = false;
+        }
+        
+        //Check validity
+        if(!valid){
             //Reset fields
             usernameTextField.setText("");
             passwordField.setText("");
@@ -228,13 +273,104 @@ public class LoginPage extends javax.swing.JFrame {
             return;
         }
         
+        
+            //Two-factor: email
+        //Create authenticationCode
+        Random rand = new Random();
+        int randInt1 = rand.nextInt(10);
+        int randInt2 = rand.nextInt(10);
+        int randInt3 = rand.nextInt(10);
+        int randInt4 = rand.nextInt(10);
+        int randInt5 = rand.nextInt(10);
+        int randInt6 = rand.nextInt(10);
+        
+        authenticationCode = "" + randInt1 + randInt2 + randInt3 + randInt4 + randInt5+ randInt6;
+        
+        //Initialized variables
+        String recipient = userHashMap.get(usernameInput).getEmail();
+        String sender = "TypeOBBM@gmail.com";
+        String senderPass = "CSItypeo24";
+        String host = "smtp.gmail.com";
+        int port = 465;
+        String auth = "true";
+        String appPass = "qgka etef axdk gvfx";
+        
+        //Set properties
+        Properties properties = System.getProperties(); 
+        properties.put("mail.smtp.host", host);
+        properties.put("mail.smtp.port", port);
+        properties.put("mail.smtp.auth", auth);
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.socketFactory.port", port);
+        properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        
+        //Create session
+        Session session = Session.getInstance(properties,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(sender, appPass);
+                    }
+                });
+        
+        boolean success = true;
+        try {
+            //Initialize message
+            MimeMessage message = new MimeMessage(session);  
+            message.setFrom(new InternetAddress(sender));  
+            
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipient));
+            
+            message.setSubject("Login Code");  
+            message.setText("Your login code for Type O is: " + authenticationCode); 
+            
+
+            // Send message  
+            Transport transport = session.getTransport("smtp");
+            transport.connect(host, sender, appPass);
+            transport.send(message);  
+            transport.close();
+
+        } catch(MessagingException mex) {
+            success = false;
+            showError("Error in sending email code", "Login Code Error");
+            mex.printStackTrace();
+        }
+        
+        if(success)
+            showError("Successfully sent login code to: " + recipient, "Login Code Sent");
+        
+        
+        
             //Username/password is valid
 
+        
+    }//GEN-LAST:event_sendCodeButtonActionPerformed
+       
+    private void sendCodeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sendCodeButtonMouseClicked
+        // Redundant
+    }//GEN-LAST:event_sendCodeButtonMouseClicked
+
+    private void loginButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButtonMouseClicked
+        // Redundant
+    }//GEN-LAST:event_loginButtonMouseClicked
+
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        String loginCodeInput = loginCodeTextField.getText();
+        
+        //Validate input
+        if(loginCodeInput.length() != 6){
+            showError("Login code must be six (6) characters.", "Verification Error");
+            return;
+        } else if(!loginCodeInput.equals(authenticationCode)){
+            showError("Input does not match code.  Resend code by re-inputting user information.", "Verification Error");
+            return;
+        }
+
         //Set user & clear input fields
-        currentUsername = usernameInput;
+        currentUsername = usernameTextField.getText();
         userHashMap.get(currentUsername).setActive(true);
 
-        //TODO: Set currentUsername label
+        //TODO: Set currentUsername label in Menu
 
         //Set clearence level
         admin = (currentUsername.equals("Admin")) ? true: false;
@@ -253,10 +389,6 @@ public class LoginPage extends javax.swing.JFrame {
         mm.setVisible(true);
         dispose();
     }//GEN-LAST:event_loginButtonActionPerformed
-       
-    private void loginButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButtonMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_loginButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -298,9 +430,12 @@ public class LoginPage extends javax.swing.JFrame {
     private javax.swing.JOptionPane errorOptionPane;
     private javax.swing.JPanel leftImagePanel;
     private javax.swing.JButton loginButton;
+    private javax.swing.JLabel loginCodeLabel;
+    private javax.swing.JTextField loginCodeTextField;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JPanel rightInputPane;
+    private javax.swing.JButton sendCodeButton;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JLabel userImageLabel;
     private javax.swing.JLabel usernameLabel;

@@ -3,6 +3,8 @@ package BloodBankManagement;
 
 import javax.swing.JOptionPane;
 
+// THIS IS REDUNDANT, DO NOT USE
+
 /**
  *
  * @author souleymane.sono
