@@ -26,159 +26,159 @@ public class Account extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        accountPanel = new javax.swing.JPanel();
-        sideBarPanel = new javax.swing.JPanel();
-        myAccountLabel = new javax.swing.JLabel();
-        eventsLabel = new javax.swing.JLabel();
-        documentUploadsLabel = new javax.swing.JLabel();
-        complaintsLabel = new javax.swing.JLabel();
-        activityFeedButton = new javax.swing.JButton();
-        mailboxButton = new javax.swing.JButton();
-        newsButton = new javax.swing.JButton();
-        eventsListButton = new javax.swing.JButton();
-        calendarButton = new javax.swing.JButton();
-        eventTypesButton = new javax.swing.JButton();
-        uploadButton = new javax.swing.JButton();
-        categoryButton = new javax.swing.JButton();
-        complaintListButton = new javax.swing.JButton();
-        complaintListLabel = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         jDesktopPane1 = new javax.swing.JDesktopPane();
-        fileChooser = new javax.swing.JFileChooser();
+        jFileChooser1 = new javax.swing.JFileChooser();
 
         setClosable(true);
         setMaximizable(true);
         setResizable(true);
         setAutoscrolls(true);
 
-        accountPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Account", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Bahnschrift", 0, 18))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Account", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Bahnschrift", 0, 18))); // NOI18N
 
-        sideBarPanel.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 
-        myAccountLabel.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
-        myAccountLabel.setText("MY ACCOUNT");
+        jLabel1.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        jLabel1.setText("MY ACCOUNT");
 
-        eventsLabel.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
-        eventsLabel.setText("EVENTS");
+        jLabel3.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        jLabel3.setText("EVENTS");
 
-        documentUploadsLabel.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
-        documentUploadsLabel.setText("DOCUMENT UPLOADS");
+        jLabel4.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        jLabel4.setText("DOCUMENT UPLOADS");
 
-        complaintsLabel.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
-        complaintsLabel.setText("COMPLAINTS");
+        jLabel5.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        jLabel5.setText("COMPLAINTS");
 
-        activityFeedButton.setFont(new java.awt.Font("Bahnschrift", 0, 13)); // NOI18N
-        activityFeedButton.setText("Activity Feed");
-        activityFeedButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton1.setFont(new java.awt.Font("Bahnschrift", 0, 13)); // NOI18N
+        jButton1.setText("Activity Feed");
+        jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
-        mailboxButton.setFont(new java.awt.Font("Bahnschrift", 0, 13)); // NOI18N
-        mailboxButton.setText("Mailbox");
-        mailboxButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton2.setFont(new java.awt.Font("Bahnschrift", 0, 13)); // NOI18N
+        jButton2.setText("Mailbox");
+        jButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
-        newsButton.setFont(new java.awt.Font("Bahnschrift", 0, 13)); // NOI18N
-        newsButton.setText("News");
-        newsButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton3.setFont(new java.awt.Font("Bahnschrift", 0, 13)); // NOI18N
+        jButton3.setText("News");
+        jButton3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
-        eventsListButton.setFont(new java.awt.Font("Bahnschrift", 0, 13)); // NOI18N
-        eventsListButton.setText("Events List");
-        eventsListButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton4.setFont(new java.awt.Font("Bahnschrift", 0, 13)); // NOI18N
+        jButton4.setText("Events List");
+        jButton4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
-        calendarButton.setFont(new java.awt.Font("Bahnschrift", 0, 13)); // NOI18N
-        calendarButton.setText("Calendar");
-        calendarButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton5.setFont(new java.awt.Font("Bahnschrift", 0, 13)); // NOI18N
+        jButton5.setText("Calendar");
+        jButton5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
-        eventTypesButton.setFont(new java.awt.Font("Bahnschrift", 0, 13)); // NOI18N
-        eventTypesButton.setText("Event Types");
-        eventTypesButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton6.setFont(new java.awt.Font("Bahnschrift", 0, 13)); // NOI18N
+        jButton6.setText("Event Types");
+        jButton6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
-        uploadButton.setFont(new java.awt.Font("Bahnschrift", 0, 13)); // NOI18N
-        uploadButton.setText("Upload");
-        uploadButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton7.setFont(new java.awt.Font("Bahnschrift", 0, 13)); // NOI18N
+        jButton7.setText("Event Types");
+        jButton7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
-        categoryButton.setFont(new java.awt.Font("Bahnschrift", 0, 13)); // NOI18N
-        categoryButton.setText("Category");
-        categoryButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        categoryButton.addActionListener(new java.awt.event.ActionListener() {
+        jButton8.setFont(new java.awt.Font("Bahnschrift", 0, 13)); // NOI18N
+        jButton8.setText("Category");
+        jButton8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                categoryButtonActionPerformed(evt);
+                jButton8ActionPerformed(evt);
             }
         });
 
-        complaintListButton.setFont(new java.awt.Font("Bahnschrift", 0, 13)); // NOI18N
-        complaintListButton.setText("Complaint List");
-        complaintListButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        complaintListButton.addActionListener(new java.awt.event.ActionListener() {
+        jButton9.setFont(new java.awt.Font("Bahnschrift", 0, 13)); // NOI18N
+        jButton9.setText("Complaint List");
+        jButton9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                complaintListButtonActionPerformed(evt);
+                jButton9ActionPerformed(evt);
             }
         });
 
-        complaintListLabel.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
-        complaintListLabel.setText("0");
+        jLabel2.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
+        jLabel2.setText("0");
 
-        javax.swing.GroupLayout sideBarPanelLayout = new javax.swing.GroupLayout(sideBarPanel);
-        sideBarPanel.setLayout(sideBarPanelLayout);
-        sideBarPanelLayout.setHorizontalGroup(
-            sideBarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(sideBarPanelLayout.createSequentialGroup()
-                .addGroup(sideBarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(eventsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(eventsListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(calendarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(eventTypesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(uploadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(sideBarPanelLayout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(sideBarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(complaintsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(documentUploadsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(sideBarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(activityFeedButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
-                        .addComponent(myAccountLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(mailboxButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(newsButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(categoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(sideBarPanelLayout.createSequentialGroup()
-                        .addComponent(complaintListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
-                        .addComponent(complaintListLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
-        sideBarPanelLayout.setVerticalGroup(
-            sideBarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(sideBarPanelLayout.createSequentialGroup()
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(71, 71, 71)
-                .addComponent(myAccountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(activityFeedButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(mailboxButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(newsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(59, 59, 59)
-                .addComponent(eventsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
-                .addComponent(eventsListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
-                .addComponent(calendarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
-                .addComponent(eventTypesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
-                .addComponent(documentUploadsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(uploadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
-                .addComponent(complaintsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(categoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(sideBarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(complaintListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(complaintListLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
-        jDesktopPane1.setLayer(fileChooser, javax.swing.JLayeredPane.POPUP_LAYER);
+        jDesktopPane1.setLayer(jFileChooser1, javax.swing.JLayeredPane.POPUP_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -186,35 +186,35 @@ public class Account extends javax.swing.JInternalFrame {
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addGap(86, 86, 86)
-                .addComponent(fileChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(145, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addGap(109, 109, 109)
-                .addComponent(fileChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout accountPanelLayout = new javax.swing.GroupLayout(accountPanel);
-        accountPanel.setLayout(accountPanelLayout);
-        accountPanelLayout.setHorizontalGroup(
-            accountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(accountPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(sideBarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jDesktopPane1)
                 .addContainerGap())
         );
-        accountPanelLayout.setVerticalGroup(
-            accountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(accountPanelLayout.createSequentialGroup()
-                .addGroup(accountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(accountPanelLayout.createSequentialGroup()
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(sideBarPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jDesktopPane1))
                 .addContainerGap())
         );
@@ -224,47 +224,47 @@ public class Account extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(accountPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(accountPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void categoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryButtonActionPerformed
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_categoryButtonActionPerformed
+    }//GEN-LAST:event_jButton8ActionPerformed
 
-    private void complaintListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_complaintListButtonActionPerformed
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_complaintListButtonActionPerformed
+    }//GEN-LAST:event_jButton9ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel accountPanel;
-    private javax.swing.JButton activityFeedButton;
-    private javax.swing.JButton calendarButton;
-    private javax.swing.JButton categoryButton;
-    private javax.swing.JButton complaintListButton;
-    private javax.swing.JLabel complaintListLabel;
-    private javax.swing.JLabel complaintsLabel;
-    private javax.swing.JLabel documentUploadsLabel;
-    private javax.swing.JButton eventTypesButton;
-    private javax.swing.JLabel eventsLabel;
-    private javax.swing.JButton eventsListButton;
-    private javax.swing.JFileChooser fileChooser;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JButton mailboxButton;
-    private javax.swing.JLabel myAccountLabel;
-    private javax.swing.JButton newsButton;
-    private javax.swing.JPanel sideBarPanel;
-    private javax.swing.JButton uploadButton;
+    private javax.swing.JFileChooser jFileChooser1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,7 +4,15 @@
  */
 package BloodBankManagement;
 
-
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,6 +26,8 @@ public class Registration extends javax.swing.JInternalFrame {
     public Registration() {
         initComponents();
     }
+    Connection con;
+    PreparedStatement insert;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -32,7 +42,6 @@ public class Registration extends javax.swing.JInternalFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         firstName = new javax.swing.JTextField();
         lastName = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -45,7 +54,7 @@ public class Registration extends javax.swing.JInternalFrame {
         address = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        cityUser = new javax.swing.JTextField();
+        city = new javax.swing.JTextField();
         state = new javax.swing.JComboBox<>();
         zip = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
@@ -54,27 +63,28 @@ public class Registration extends javax.swing.JInternalFrame {
         jLabel29 = new javax.swing.JLabel();
         telephone = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        genderUser1 = new javax.swing.JComboBox<>();
+        bloodType = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
         jCheckBox2 = new javax.swing.JCheckBox();
         jLabel15 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        DateofBirth = new de.wannawork.jcalendar.JCalendarComboBox();
         jPanel4 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
-        Gfname = new javax.swing.JTextField();
-        Glname = new javax.swing.JTextField();
+        Emgencyfname = new javax.swing.JTextField();
+        Emgencylname = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
-        Gtel = new javax.swing.JTextField();
+        Emgencytel = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         relation = new javax.swing.JTextField();
-        add = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
-        Gemail = new javax.swing.JTextField();
+        Emgencyemail = new javax.swing.JTextField();
+        Test = new javax.swing.JLabel();
+        Add = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -95,10 +105,7 @@ public class Registration extends javax.swing.JInternalFrame {
         jLabel4.setText("First Name:*");
 
         jLabel5.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
-        jLabel5.setText("Gender:");
-
-        jLabel6.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qr.png"))); // NOI18N
+        jLabel5.setText("Sex:");
 
         firstName.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
         firstName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -141,8 +148,8 @@ public class Registration extends javax.swing.JInternalFrame {
         jLabel12.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
         jLabel12.setText("City:");
 
-        cityUser.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
-        cityUser.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        city.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
+        city.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         state.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         state.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "AL|Alabama", "AK|Alaska", "AZ|Arizona", "AR|Arkansas", "CA|California", "CO|Colorado", "CT|Connecticut", "DE|Delaware", "FL|Florida", "GA|Georgia", "HI|Hawaii", "ID|Idaho", "IL|Illinois", "IN|Indiana", "IA|Iowa", "KS|Kansas", "KY|Kentucky", "LA|Louisiana", "ME|Maine", "MD|Maryland", "MA|Massachusetts", "MI|Michigan", "MN|Minnesota", "MS|Mississippi", "MO|Missouri", "MT|Montana", "NE|Nebraska", "NV|Nevada", "NH|New Hampshire", "NJ|New Jersey", "NM|New Mexico", "NY|New York", "NC|North Carolina", "ND|North Dakota", "OH|Ohio", "OK|Oklahoma", "OR|Oregon", "PA|Pennsylvania", "RI|Rhode Island", "SC|South Carolina", "SD|South Dakota", "TN|Tennessee", "TX|Texas", "UT|Utah", "VT|Vermont", "VA|Virginia", "WA|Washington", "WV|West Virginia", "WI|Wisconsin", "WY|Wyoming", "DC|District of Columbia", "AS|American Samoa", "GU|Guam", "MP|Northern Mariana Islands", "PR|Puerto Rico", "UM|United States Minor Outlying Islands", "VI|Virgin Islands, U.S." }));
@@ -168,11 +175,11 @@ public class Registration extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
         jLabel3.setText("Blood Type");
 
-        genderUser1.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
-        genderUser1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-" }));
-        genderUser1.addActionListener(new java.awt.event.ActionListener() {
+        bloodType.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        bloodType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-" }));
+        bloodType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                genderUser1ActionPerformed(evt);
+                bloodTypeActionPerformed(evt);
             }
         });
 
@@ -206,7 +213,8 @@ public class Registration extends javax.swing.JInternalFrame {
                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -214,7 +222,7 @@ public class Registration extends javax.swing.JInternalFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(genderUser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bloodType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(telephone, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -227,34 +235,32 @@ public class Registration extends javax.swing.JInternalFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(state, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(genderUser, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cityUser)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(zip, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(DateofBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(address))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(genderUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(55, 55, 55)
-                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 6, Short.MAX_VALUE)))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(state, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(city)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(zip, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(address))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(placeOB, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
@@ -276,9 +282,7 @@ public class Registration extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -289,19 +293,14 @@ public class Registration extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lastName, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(middleName, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lastName, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(middleName, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -311,7 +310,7 @@ public class Registration extends javax.swing.JInternalFrame {
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(placeOB, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(DateofBirth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -322,7 +321,7 @@ public class Registration extends javax.swing.JInternalFrame {
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(state, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(cityUser, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(city, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(zip, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -339,7 +338,7 @@ public class Registration extends javax.swing.JInternalFrame {
                     .addComponent(jCheckBox2))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(genderUser1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bloodType, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
@@ -354,21 +353,21 @@ public class Registration extends javax.swing.JInternalFrame {
         jLabel16.setText("First Name:*");
         jPanel4.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 32, 104, 27));
 
-        Gfname.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
-        Gfname.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jPanel4.add(Gfname, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 30, 263, 32));
+        Emgencyfname.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
+        Emgencyfname.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jPanel4.add(Emgencyfname, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 30, 263, 32));
 
-        Glname.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
-        Glname.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jPanel4.add(Glname, new org.netbeans.lib.awtextra.AbsoluteConstraints(506, 30, 210, 32));
+        Emgencylname.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
+        Emgencylname.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jPanel4.add(Emgencylname, new org.netbeans.lib.awtextra.AbsoluteConstraints(506, 30, 210, 32));
 
         jLabel19.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
         jLabel19.setText("Last Name:*");
         jPanel4.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(396, 32, 104, 27));
 
-        Gtel.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
-        Gtel.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jPanel4.add(Gtel, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 74, 263, 32));
+        Emgencytel.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
+        Emgencytel.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jPanel4.add(Emgencytel, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 74, 263, 32));
 
         jLabel20.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
         jLabel20.setText("Telephone:");
@@ -382,33 +381,35 @@ public class Registration extends javax.swing.JInternalFrame {
         relation.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPanel4.add(relation, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 171, 259, 30));
 
-        add.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
-        add.setText("Add");
-        add.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                addMouseClicked(evt);
-            }
-        });
-        add.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addActionPerformed(evt);
-            }
-        });
-        jPanel4.add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, -1, -1));
-
         jButton7.setBackground(new java.awt.Color(255, 0, 0));
         jButton7.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
         jButton7.setText("Clear");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
         jPanel4.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, -1, -1));
 
         jLabel21.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
         jLabel21.setText("Email:");
         jPanel4.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 120, 104, 27));
 
-        Gemail.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
-        Gemail.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jPanel4.add(Gemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 118, 259, 32));
+        Emgencyemail.setFont(new java.awt.Font("Bahnschrift", 0, 15)); // NOI18N
+        Emgencyemail.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jPanel4.add(Emgencyemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 118, 259, 32));
+
+        Test.setText("0");
+        jPanel4.add(Test, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, 280, 40));
+
+        Add.setText("jButton1");
+        Add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddActionPerformed(evt);
+            }
+        });
+        jPanel4.add(Add, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, -1, -1));
 
         jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 560, 770, 300));
 
@@ -430,41 +431,147 @@ public class Registration extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
-        // TODO add your handling code here:
-        
-        
-    }//GEN-LAST:event_addActionPerformed
-
-    private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
-
-    }//GEN-LAST:event_addMouseClicked
-
     private void lastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_lastNameActionPerformed
 
-    private void genderUser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderUser1ActionPerformed
+    private void bloodTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bloodTypeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_genderUser1ActionPerformed
+    }//GEN-LAST:event_bloodTypeActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        
+        
+      
+
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddActionPerformed
+
+       // Ensure you get the date as a string from the DatePicker
+            Date date = DateofBirth.getDate();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String dateofbirth = (date != null) ? sdf.format(date) : null;  // Format the date to a string, or set it to null
+
+            // Get all fields data
+            String firstname = firstName.getText();
+            String lastname = lastName.getText();
+            String middlename = middleName.getText();
+            String placeofbirth = placeOB.getText();
+            String addr = address.getText();
+            String stateuser = state.getSelectedItem().toString();
+            String cityuser = city.getText();
+            String zipuser = zip.getText();
+            String tel = telephone.getText();
+            String donorEmail = emailField.getText();
+            String emfirst = Emgencyfname.getText();
+            String emlast = Emgencylname.getText();
+            String emEmail = Emgencyemail.getText();
+            String emTel = Emgencytel.getText();
+            String rel = relation.getText();
+            String gend = genderUser.getSelectedItem().toString();
+            String blood = bloodType.getSelectedItem().toString();
+
+            // Log the data being passed
+            System.out.println("Inserting data:");
+            System.out.println("FirstName: " + firstname);
+            System.out.println("LastName: " + lastname);
+            System.out.println("DateOfBirth: " + dateofbirth);
+            System.out.println("State: " + stateuser);
+            System.out.println("City: " + cityuser);
+            System.out.println("Zip: " + zipuser);
+            System.out.println("Telephone: " + tel);
+
+            try {
+                // Establish connection
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+                con = DriverManager.getConnection(
+                    "jdbc:sqlserver://bloodbankdata.database.windows.net:1433;database=bloodBank;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;",
+                    "csiadmin", "7ousRespo3!");
+
+                // Check if connection is successful
+                if (con != null) {
+                    System.out.println("Database connection established.");
+                } else {
+                    System.out.println("Failed to establish database connection.");
+                    return; // Exit if connection fails
+                }
+
+                // Prepare the SQL query
+                String insertQuery = "INSERT INTO Registration (FirstName, LastName, middleName, DateOfBirth, placeofbirth, DonorAddr, states, City, zip, Telephone, Email, BloodType, emFirst, emLast, EmEmail, EmTel, Relation, Sex) " +
+                                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
+
+                // Prepare the statement
+                insert = con.prepareStatement(insertQuery);
+                if (insert != null) {
+                    System.out.println("Prepared statement created successfully.");
+                } else {
+                    System.out.println("Failed to create prepared statement.");
+                    return; // Exit if preparation fails
+                }
+
+                // Set the parameters in the correct order
+                insert.setString(1, firstname);
+                insert.setString(2, lastname);
+                insert.setString(3, middlename);
+                insert.setString(4, dateofbirth);  // Formatted date string
+                insert.setString(5, placeofbirth);
+                insert.setString(6, addr);
+                insert.setString(7, stateuser);  // Make sure the State field is set correctly
+                insert.setString(8, cityuser);   // Make sure the City field is set correctly
+                insert.setString(9, zipuser);    // Zip field
+                insert.setString(10, tel);       // Telephone field
+                insert.setString(11, donorEmail); // Email field
+                insert.setString(12, blood);     // Blood type field
+                insert.setString(13, emfirst);   // Emergency contact first name
+                insert.setString(14, emlast);    // Emergency contact last name
+                insert.setString(15, emEmail);   // Emergency contact email
+                insert.setString(16, emTel);     // Emergency contact telephone
+                insert.setString(17, rel);       // Relation field
+                insert.setString(18, gend);      // Gender field
+
+                // Execute the query
+                int k = insert.executeUpdate();
+
+                // Check the result and provide feedback
+                if (k == 1) {
+                    JOptionPane.showMessageDialog(this, "Donor added successfully!");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Failed to add donor.");
+                }
+
+            } catch (ClassNotFoundException ex) {
+                JOptionPane.showMessageDialog(this, "Driver not found: " + ex.getMessage());
+                Logger.getLogger(ConnectData.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, "Database error: " + ex.getMessage());
+                Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            
+           
+
+    }//GEN-LAST:event_AddActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Gemail;
-    private javax.swing.JTextField Gfname;
-    private javax.swing.JTextField Glname;
-    private javax.swing.JTextField Gtel;
-    private javax.swing.JButton add;
+    private javax.swing.JButton Add;
+    private de.wannawork.jcalendar.JCalendarComboBox DateofBirth;
+    private javax.swing.JTextField Emgencyemail;
+    private javax.swing.JTextField Emgencyfname;
+    private javax.swing.JTextField Emgencylname;
+    private javax.swing.JTextField Emgencytel;
+    private javax.swing.JLabel Test;
     private javax.swing.JTextField address;
-    private javax.swing.JTextField cityUser;
+    private javax.swing.JComboBox<String> bloodType;
+    private javax.swing.JTextField city;
     private javax.swing.JTextField emailField;
     private javax.swing.JTextField firstName;
     private javax.swing.JComboBox<String> genderUser;
-    private javax.swing.JComboBox<String> genderUser1;
     private javax.swing.JButton jButton7;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -483,7 +590,6 @@ public class Registration extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
