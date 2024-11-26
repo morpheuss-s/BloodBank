@@ -26,17 +26,18 @@ public class Inventory extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        bPositiveButton = new javax.swing.JButton();
-        abPositiveButton = new javax.swing.JButton();
-        aNegativeButton = new javax.swing.JButton();
-        oPositiveButton = new javax.swing.JButton();
-        aPositiveButton = new javax.swing.JButton();
-        oNegativeButton = new javax.swing.JButton();
-        bNegativeButton = new javax.swing.JButton();
-        abNegativeButton = new javax.swing.JButton();
-        exitButton = new javax.swing.JButton();
-        inventoryLabel = new javax.swing.JLabel();
-        bloodTypeLabel = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        InventoryPane = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -45,140 +46,135 @@ public class Inventory extends javax.swing.JInternalFrame {
         setTitle("Inventory");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        bPositiveButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/B+.png"))); // NOI18N
-        bPositiveButton.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/B+.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bPositiveButtonActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(bPositiveButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 140, 130));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 140, 130));
 
-        abPositiveButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AB+.png"))); // NOI18N
-        abPositiveButton.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AB+.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                abPositiveButtonActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(abPositiveButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 160, 140, 130));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, 140, 130));
 
-        aNegativeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/A-.png"))); // NOI18N
-        aNegativeButton.addActionListener(new java.awt.event.ActionListener() {
+        jLabel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Inventory", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Bahnschrift", 0, 24), new java.awt.Color(204, 0, 0))); // NOI18N
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 1550, 70));
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/A-.png"))); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aNegativeButtonActionPerformed(evt);
+                jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(aNegativeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 140, 130));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 140, 130));
 
-        oPositiveButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/O+.png"))); // NOI18N
-        oPositiveButton.addActionListener(new java.awt.event.ActionListener() {
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/O+.png"))); // NOI18N
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                oPositiveButtonActionPerformed(evt);
+                jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(oPositiveButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 160, 140, 130));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 600, 140, 130));
 
-        aPositiveButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/A+.png"))); // NOI18N
-        aPositiveButton.addActionListener(new java.awt.event.ActionListener() {
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/A+.png"))); // NOI18N
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aPositiveButtonActionPerformed(evt);
+                jButton5ActionPerformed(evt);
             }
         });
-        getContentPane().add(aPositiveButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 140, 130));
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 140, 130));
 
-        oNegativeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/O+.png"))); // NOI18N
-        oNegativeButton.addActionListener(new java.awt.event.ActionListener() {
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/O+.png"))); // NOI18N
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                oNegativeButtonActionPerformed(evt);
+                jButton6ActionPerformed(evt);
             }
         });
-        getContentPane().add(oNegativeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 300, 140, 130));
+        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 600, 140, 130));
 
-        bNegativeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/B-.png"))); // NOI18N
-        bNegativeButton.addActionListener(new java.awt.event.ActionListener() {
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/B-.png"))); // NOI18N
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bNegativeButtonActionPerformed(evt);
+                jButton7ActionPerformed(evt);
             }
         });
-        getContentPane().add(bNegativeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 140, 130));
+        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 140, 130));
 
-        abNegativeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AB-.png"))); // NOI18N
-        abNegativeButton.addActionListener(new java.awt.event.ActionListener() {
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AB-.png"))); // NOI18N
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                abNegativeButtonActionPerformed(evt);
+                jButton8ActionPerformed(evt);
             }
         });
-        getContentPane().add(abNegativeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 300, 140, 130));
+        getContentPane().add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 450, 140, 130));
 
-        exitButton.setBackground(new java.awt.Color(204, 0, 0));
-        exitButton.setFont(new java.awt.Font("Bahnschrift", 1, 20)); // NOI18N
-        exitButton.setForeground(new java.awt.Color(255, 255, 255));
-        exitButton.setText("Exit");
-        exitButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exitButtonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 480, 90, 30));
+        jButton9.setBackground(new java.awt.Color(204, 0, 0));
+        jButton9.setFont(new java.awt.Font("Bahnschrift", 1, 20)); // NOI18N
+        jButton9.setForeground(new java.awt.Color(255, 255, 255));
+        jButton9.setText("Exit");
+        getContentPane().add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 870, 90, 30));
 
-        inventoryLabel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Inventory", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Bahnschrift", 0, 24), new java.awt.Color(204, 0, 0))); // NOI18N
-        getContentPane().add(inventoryLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 710, 470));
-
-        bloodTypeLabel.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
-        bloodTypeLabel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Blood Type", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Bahnschrift", 0, 18), new java.awt.Color(204, 0, 0))); // NOI18N
-        getContentPane().add(bloodTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 680, 420));
+        jLabel1.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
+        jLabel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Blood Type", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Bahnschrift", 0, 18), new java.awt.Color(204, 0, 0))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 360, 810));
+        getContentPane().add(InventoryPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 130, 1190, 790));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void bPositiveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPositiveButtonActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_bPositiveButtonActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void abPositiveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abPositiveButtonActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_abPositiveButtonActionPerformed
+    }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void aNegativeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aNegativeButtonActionPerformed
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_aNegativeButtonActionPerformed
+    }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void oPositiveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oPositiveButtonActionPerformed
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_oPositiveButtonActionPerformed
+    }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void aPositiveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aPositiveButtonActionPerformed
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_aPositiveButtonActionPerformed
+        
+        InventoryAplus iAplus = new InventoryAplus();
+        InventoryPane.add(iAplus).setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void oNegativeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oNegativeButtonActionPerformed
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_oNegativeButtonActionPerformed
+    }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void bNegativeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNegativeButtonActionPerformed
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_bNegativeButtonActionPerformed
+    }//GEN-LAST:event_jButton7ActionPerformed
 
-    private void abNegativeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abNegativeButtonActionPerformed
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_abNegativeButtonActionPerformed
-
-    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
-        // TODO add your handling code here:
-        dispose();
-    }//GEN-LAST:event_exitButtonActionPerformed
+    }//GEN-LAST:event_jButton8ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton aNegativeButton;
-    private javax.swing.JButton aPositiveButton;
-    private javax.swing.JButton abNegativeButton;
-    private javax.swing.JButton abPositiveButton;
-    private javax.swing.JButton bNegativeButton;
-    private javax.swing.JButton bPositiveButton;
-    private javax.swing.JLabel bloodTypeLabel;
-    private javax.swing.JButton exitButton;
-    private javax.swing.JLabel inventoryLabel;
-    private javax.swing.JButton oNegativeButton;
-    private javax.swing.JButton oPositiveButton;
+    private javax.swing.JLabel InventoryPane;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel6;
     // End of variables declaration//GEN-END:variables
 }

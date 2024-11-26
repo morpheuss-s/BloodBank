@@ -12,6 +12,7 @@ import java.util.Properties;
 import javax.mail.*; 
 import javax.mail.internet.*; 
 import javax.activation.*; 
+
 /**
  *
  * @author souleymane.sono
@@ -57,9 +58,8 @@ public class LoginPage extends javax.swing.JFrame {
         } catch(Exception e){
             //Handle HeadlessException
         }
-        
+
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -88,49 +88,48 @@ public class LoginPage extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        leftImagePanel.setBackground(new java.awt.Color(204, 0, 0));
+        jPanel1.setBackground(new java.awt.Color(204, 0, 0));
 
-        titleLabel.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 48)); // NOI18N
-        titleLabel.setForeground(new java.awt.Color(255, 255, 255));
-        titleLabel.setText("BLOOD BANK MANAGEMENT");
+        jLabel3.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 48)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("BLOOD BANK MANAGEMENT");
 
-        bloodImageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngegg (30).png"))); // NOI18N
-
-        javax.swing.GroupLayout leftImagePanelLayout = new javax.swing.GroupLayout(leftImagePanel);
-        leftImagePanel.setLayout(leftImagePanelLayout);
-        leftImagePanelLayout.setHorizontalGroup(
-            leftImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(leftImagePanelLayout.createSequentialGroup()
-                .addGroup(leftImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(leftImagePanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(199, 199, 199)
-                        .addComponent(bloodImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(leftImagePanelLayout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(17, 17, 17)
-                        .addComponent(titleLabel)))
+                        .addComponent(jLabel3)))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
-        leftImagePanelLayout.setVerticalGroup(
-            leftImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(leftImagePanelLayout.createSequentialGroup()
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(112, 112, 112)
-                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(96, 96, 96)
                 .addComponent(bloodImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(124, Short.MAX_VALUE))
         );
 
-        getContentPane().add(leftImagePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 830));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 830));
 
-        passwordLabel.setFont(new java.awt.Font("Book Antiqua", 0, 24)); // NOI18N
-        passwordLabel.setText("Password:");
+        jLabel1.setFont(new java.awt.Font("Book Antiqua", 0, 24)); // NOI18N
+        jLabel1.setText("Password:");
 
-        usernameLabel.setFont(new java.awt.Font("Book Antiqua", 0, 24)); // NOI18N
-        usernameLabel.setText("Username:");
+        jLabel2.setFont(new java.awt.Font("Book Antiqua", 0, 24)); // NOI18N
+        jLabel2.setText("Username:");
 
-        usernameTextField.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
+        jTextField1.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
 
-        passwordField.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
+        jPasswordField1.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
+        jPasswordField1.setText("jPasswordField1");
 
         sendCodeButton.setBackground(new java.awt.Color(204, 0, 0));
         sendCodeButton.setFont(new java.awt.Font("Book Antiqua", 1, 18)); // NOI18N
@@ -164,12 +163,12 @@ public class LoginPage extends javax.swing.JFrame {
         loginButton.setText("Login");
         loginButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                loginButtonMouseClicked(evt);
+                jButton1MouseClicked(evt);
             }
         });
-        loginButton.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginButtonActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -239,7 +238,7 @@ public class LoginPage extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        getContentPane().add(rightInputPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(809, 0, -1, -1));
+        getContentPane().add(pane, new org.netbeans.lib.awtextra.AbsoluteConstraints(809, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
