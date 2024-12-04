@@ -1,6 +1,21 @@
 
 package BloodBankManagement;
 
+import javax.swing.JOptionPane;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.*;
+
+import BloodBankManagement.ActivityLog;
+
+import java.util.*;
+import java.util.Properties;
+import javax.mail.*; 
+import javax.mail.internet.*; 
+import javax.activation.*; 
+
 /**
  *
  * @author souleymane.sono
@@ -12,7 +27,15 @@ public class LoginPage extends javax.swing.JFrame {
      */
     public LoginPage() {
         initComponents();
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/blood.png")));
+        loginIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/login.png")));
+
     }
+    
+    private static String authenticationCode;
+    public static String currentUsername;
+    public static String userRole;
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,22 +49,33 @@ public class LoginPage extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         pane = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        usernameTextField = new javax.swing.JTextField();
+        passwordField = new javax.swing.JPasswordField();
+        loginButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        sendCodeButton = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        loginCodeTextField = new javax.swing.JTextField();
+        loginIcon = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(204, 0, 0));
 
-        jLabel3.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 48)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 56)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("BLOOD BANK MANAGEMENT");
+        jLabel3.setText("Type  O");
+        jLabel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
+
+        jLabel6.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 48)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("BLOOD BANK MANAGEMENT");
+        jLabel6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -50,21 +84,27 @@ public class LoginPage extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(199, 199, 199)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(72, 72, 72)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 654, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jLabel3)))
-                .addContainerGap(23, Short.MAX_VALUE))
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(84, 84, 84)
+                                .addComponent(jLabel3)))))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(112, 112, 112)
+                .addGap(103, 103, 103)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(96, 96, 96)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 830));
@@ -75,25 +115,44 @@ public class LoginPage extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Book Antiqua", 0, 24)); // NOI18N
         jLabel2.setText("Username:");
 
-        jTextField1.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
+        usernameTextField.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
 
-        jPasswordField1.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
-        jPasswordField1.setText("jPasswordField1");
+        passwordField.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
 
-        jButton1.setBackground(new java.awt.Color(204, 0, 0));
-        jButton1.setFont(new java.awt.Font("Book Antiqua", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Login");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        loginButton.setBackground(new java.awt.Color(204, 0, 0));
+        loginButton.setFont(new java.awt.Font("Book Antiqua", 1, 18)); // NOI18N
+        loginButton.setForeground(new java.awt.Color(255, 255, 255));
+        loginButton.setText("Login");
+        loginButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                loginButtonMouseClicked(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                loginButtonActionPerformed(evt);
             }
         });
+
+        sendCodeButton.setBackground(new java.awt.Color(204, 0, 0));
+        sendCodeButton.setFont(new java.awt.Font("Book Antiqua", 1, 18)); // NOI18N
+        sendCodeButton.setForeground(new java.awt.Color(255, 255, 255));
+        sendCodeButton.setText("Send Code");
+        sendCodeButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sendCodeButtonMouseClicked(evt);
+            }
+        });
+        sendCodeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendCodeButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Book Antiqua", 0, 24)); // NOI18N
+        jLabel7.setText("Login Code:");
+
+        loginCodeTextField.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout paneLayout = new javax.swing.GroupLayout(pane);
         pane.setLayout(paneLayout);
@@ -102,55 +161,448 @@ public class LoginPage extends javax.swing.JFrame {
             .addGroup(paneLayout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addGroup(paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(paneLayout.createSequentialGroup()
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(loginCodeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(paneLayout.createSequentialGroup()
                         .addGroup(paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(26, 26, 26)
                         .addGroup(paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE))))
-                .addContainerGap(138, Short.MAX_VALUE))
+                            .addComponent(usernameTextField)
+                            .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)))
+                    .addComponent(sendCodeButton))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         paneLayout.setVerticalGroup(
             paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paneLayout.createSequentialGroup()
                 .addGap(149, 149, 149)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
                 .addGroup(paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(79, Short.MAX_VALUE))
+                    .addGroup(paneLayout.createSequentialGroup()
+                        .addGroup(paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31)
+                        .addGroup(paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(14, 14, 14)
+                        .addComponent(sendCodeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(paneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(loginCodeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel4))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(pane, new org.netbeans.lib.awtextra.AbsoluteConstraints(809, 0, -1, -1));
+        getContentPane().add(pane, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 330, 520, -1));
+        getContentPane().add(loginIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 130, 440, 340));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        Menu mm = new Menu();
-        mm.setVisible(true);
-       
-       
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        String loginCodeInput = loginCodeTextField.getText();
+        
+        if(loginCodeInput.equals(authenticationCode)){
+            //Save username
+                Menu menu = new Menu(userRole);  // Pass user role (Admin or Guest)
+                menu.setVisible(true);  // Show the Menu
+                this.dispose();  // Close the login page
+        } else{
+            JOptionPane.showMessageDialog(this, "Login code couldn't be validated", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        
+    }//GEN-LAST:event_loginButtonActionPerformed
+    
+    private boolean validateLogin(String username, String password) {
+        String query = "SELECT role FROM admin WHERE username = ? AND password = ?"
+                     + " UNION "
+                     + "SELECT role FROM GuestUser WHERE username = ? AND password = ?";
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        try (Connection con = DriverManager.getConnection(
+                "jdbc:sqlserver://bloodbankdata.database.windows.net:1433;database=bloodBank;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;",
+                "csiadmin", "7ousRespo3!");
+             PreparedStatement pst = con.prepareStatement(query)) {
+
+            // Set parameters for the query
+            pst.setString(1, username);   // Admin username
+            pst.setString(2, password);   // Admin password
+            pst.setString(3, username);   // GuestUser username
+            pst.setString(4, password);   // GuestUser password
+
+            // Execute the query and check result
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                String role = rs.getString("role");
+
+                // If the role is either "Admin" or "Guest User", return true
+                if ("Admin".equals(role) || "Guest User".equals(role)) {
+                    return true;
+                } else {
+                    JOptionPane.showMessageDialog(this, "Invalid user role", "Error", JOptionPane.ERROR_MESSAGE);
+                    return false;
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Invalid login credentials", "Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Database error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+    }
+    
+    /*
+    private String getUserRole(String username, String password) {
+        String role = null;  // Default to null if no role found
+        String query = "SELECT role FROM admin WHERE username = ? AND password = ? " +
+                       "UNION SELECT role FROM GuestUser WHERE username = ? AND password = ?";
+
+        try (Connection con = DriverManager.getConnection("jdbc:sqlserver://bloodbankdata.database.windows.net:1433;database=bloodBank;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;",
+                "csiadmin", "7ousRespo3!")) {
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setString(1, username);
+            pst.setString(2, password);
+            pst.setString(3, username);
+            pst.setString(4, password);
+
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                role = rs.getString("role");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return role;  // Return role (either Admin or Guest)
+    
+    }
+    */
+    private String getUserRole(String username, String password) {
+        String role = null;  // Default to null if no role found
+        String query = "SELECT role, accountStatus FROM admin WHERE username = ? AND password = ? AND accountStatus = 'Active' " +
+                       "UNION SELECT role, accountStatus FROM GuestUser WHERE username = ? AND password = ? AND accountStatus = 'Active'";
+
+        try (Connection con = DriverManager.getConnection("jdbc:sqlserver://bloodbankdata.database.windows.net:1433;database=bloodBank;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;",
+                "csiadmin", "7ousRespo3!")) {
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setString(1, username);
+            pst.setString(2, password);
+            pst.setString(3, username);
+            pst.setString(4, password);
+
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                role = rs.getString("role");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return role;  // Return role (either Admin or Guest) if active, or null if inactive
+    }
+
+    
+   private String getUserEmail(String username, String password){
+       String email = null; //Default
+       
+       String query = "SELECT email, accountStatus FROM admin WHERE username = ? AND password = ? AND accountStatus = 'Active' " +
+                       "UNION SELECT email, accountStatus FROM GuestUser WHERE username = ? AND password = ? AND accountStatus = 'Active'";
+
+        try (Connection con = DriverManager.getConnection("jdbc:sqlserver://bloodbankdata.database.windows.net:1433;database=bloodBank;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;",
+                "csiadmin", "7ousRespo3!")) {
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setString(1, username);
+            pst.setString(2, password);
+            pst.setString(3, username);
+            pst.setString(4, password);
+
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                email = rs.getString("email");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        return email;
+   }
+    
+    
+    
+    
+    private void loginButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButtonMouseClicked
         // TODO add your handling code here:
         //Menu mm = new Menu();
         //mm.setVisible(true);
       
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_loginButtonMouseClicked
+
+    private void sendCodeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sendCodeButtonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sendCodeButtonMouseClicked
+
+    private void sendCodeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendCodeButtonActionPerformed
+        /*
+        String username = loginUsername.getText(); 
+        String password = new String(loginPassword.getPassword()); // Assuming password is in a JPasswordField
+
+        if (username.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter both username and password", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Assuming `Connection con` is your database connection object
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:sqlserver://bloodbankdata.database.windows.net:1433;database=bloodBank;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;",
+                    "csiadmin", "7ousRespo3!");
+
+            // Query to check if the user is an Admin or Guest User and validate credentials
+            String queryAdmin = "SELECT * FROM admin WHERE username = ? AND password = ?";
+            String queryGuest = "SELECT * FROM GuestUser WHERE username = ? AND password = ?";
+
+            // Check for Admin first
+            PreparedStatement pstAdmin = con.prepareStatement(queryAdmin);
+            pstAdmin.setString(1, username);
+            pstAdmin.setString(2, password);
+            ResultSet rsAdmin = pstAdmin.executeQuery();
+
+            if (rsAdmin.next()) {  // If an Admin is found
+                JOptionPane.showMessageDialog(this, "Login successful as Admin", "Success", JOptionPane.INFORMATION_MESSAGE);
+                // Redirect to Admin Dashboard or next screen
+                // e.g., AdminDashboard.show(); 
+                Menu mm = new Menu();
+                mm.setVisible(true);
+            } else {
+                // If Admin doesn't match, check GuestUser
+                PreparedStatement pstGuest = con.prepareStatement(queryGuest);
+                pstGuest.setString(1, username);
+                pstGuest.setString(2, password);
+                ResultSet rsGuest = pstGuest.executeQuery();
+
+                if (rsGuest.next()) {  // If a Guest User is found
+                    JOptionPane.showMessageDialog(this, "Login successful as Guest User", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    // Redirect to Guest User Dashboard or next screen
+                    // e.g., GuestDashboard.show();
+                    Menu mm = new Menu();
+                    mm.setVisible(true);
+                } else {
+                    // If no user found in both tables
+                    JOptionPane.showMessageDialog(this, "Invalid username or password", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Database error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(this, "Driver not found: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        */
+        /*
+        String username = loginUsername.getText();  // Get username
+        String password = new String(loginPassword.getPassword());  // Get password
+
+        // Get user role after validating login
+        String userRole = getUserRole(username, password);
+
+        if (userRole != null) {
+            // Successfully authenticated, pass the role to the Menu screen
+            Menu menu = new Menu(userRole);  // Pass user role (Admin or Guest)
+            menu.setVisible(true);  // Show the Menu
+            this.dispose();  // Close the login page
+        } else {
+            // Show error message for invalid credentials
+            JOptionPane.showMessageDialog(this, "Invalid credentials", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+  
+       */
+        String username = usernameTextField.getText();  // Get username
+        String password = new String(passwordField.getPassword());  // Get password
+
+        // Get user role after validating login
+        userRole = getUserRole(username, password);
+
+        if (userRole != null) {
+            // Successfully authenticated, pass the role to the Menu screen
+                currentUsername = username;
+                
+                            //Two-factor email
+                            
+                //Create authenticationCode
+                Random rand = new Random();
+                authenticationCode = "";
+                int randNum;
+                
+                //Choose 12 characters
+                for(int i = 0; i < 13; i++){
+                    randNum = rand.nextInt(100);
+                    
+                    if(randNum % 5 == 0){
+                        //Special character
+                        if(rand.nextInt(10) % 2 == 0){
+                            authenticationCode += "!";
+                        } else{
+                            authenticationCode += "$";
+                        }
+                        
+                    } else if (randNum % 3 == 0){
+                        //Letter (default lowercase)
+                        
+                        int letterInt = rand.nextInt(26);
+                        String letter = "";
+
+                        switch(letterInt){
+                            case 0:
+                                letter = "a"; break;
+                            case 1:
+                                letter = "b"; break;
+                            case 2:
+                                letter = "c"; break;
+                            case 3:
+                                letter = "d"; break;
+                            case 4:
+                                letter = "e"; break;
+                            case 5:
+                                letter = "f"; break;
+                            case 6:
+                                letter = "g"; break;
+                            case 7:
+                                letter = "h"; break;
+                            case 8:
+                                letter = "i"; break;
+                            case 9:
+                                letter = "j"; break;
+                            case 10:
+                                letter = "k"; break;
+                            case 11:
+                                letter = "l"; break;
+                            case 12:
+                                letter = "m"; break;
+                            case 13:
+                                letter = "n"; break;
+                            case 14:
+                                letter = "o"; break;
+                            case 15:
+                                letter = "p"; break;
+                            case 16:
+                                letter = "q"; break;
+                            case 17:
+                                letter = "r"; break;
+                            case 18:
+                                letter = "s"; break;
+                            case 19:
+                                letter = "t"; break;
+                            case 20:
+                                letter = "u"; break;
+                            case 21:
+                                letter = "v"; break;
+                            case 22:
+                                letter = "w"; break;
+                            case 23:
+                                letter = "x"; break;
+                            case 24:
+                                letter = "y"; break;
+                            case 25:
+                                letter = "z"; break;
+                        }
+                        
+                        //Case
+                        if(rand.nextInt(10) % 2 == 0){
+                            //Capital
+                            letter.toUpperCase();
+                        }
+                        
+                        //Append
+                        authenticationCode += letter;
+                        
+                    } else if(randNum % 2 == 0){
+                        //Number
+                        authenticationCode += rand.nextInt(10);
+                    }
+                }
+                
+                /*
+                int randInt1 = rand.nextInt(10);
+                int randInt2 = rand.nextInt(10);
+                int randInt3 = rand.nextInt(10);
+                int randInt4 = rand.nextInt(10);
+                int randInt5 = rand.nextInt(10);
+                int randInt6 = rand.nextInt(10);
+
+                authenticationCode = "" + randInt1 + randInt2 + randInt3 + randInt4 + randInt5+ randInt6;
+                */
+                
+                //Initialized variables
+                String recipient = getUserEmail(username, password); //Get users email
+                String sender = "TypeOBBM@gmail.com";
+                String senderPass = "CSItypeo24";
+                String host = "smtp.gmail.com";
+                int port = 465;
+                String auth = "true";
+                String appPass = "qgka etef axdk gvfx";
+
+                //Set properties
+                Properties properties = System.getProperties(); 
+                properties.put("mail.smtp.host", host);
+                properties.put("mail.smtp.port", port);
+                properties.put("mail.smtp.auth", auth);
+                properties.put("mail.smtp.starttls.enable", "true");
+                properties.put("mail.smtp.socketFactory.port", port);
+                properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+
+                //Create session
+                Session session = Session.getInstance(properties,
+                        new javax.mail.Authenticator() {
+                            protected PasswordAuthentication getPasswordAuthentication() {
+                                return new PasswordAuthentication(sender, appPass);
+                            }
+                        });
+
+                boolean success = true;
+                try {
+                    //Initialize message
+                    MimeMessage message = new MimeMessage(session);  
+                    message.setFrom(new InternetAddress(sender));  
+
+                    message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipient));
+
+                    message.setSubject("Login Code");  
+                    message.setText("Your login code for Type O is: " + authenticationCode); 
+
+
+                    // Send message  
+                    Transport transport = session.getTransport("smtp");
+                    transport.connect(host, sender, appPass);
+                    transport.send(message);  
+                    transport.close();
+
+                } catch(MessagingException mex) {
+                    success = false;
+                    JOptionPane.showMessageDialog(this, "Error in sending email code.", "Error", JOptionPane.ERROR_MESSAGE);
+                    mex.printStackTrace();
+                }
+                
+                //Give positive notification
+                if(success)
+                        JOptionPane.showMessageDialog(this, "Email sent", "Sucess", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            // Show error message for invalid credentials or inactive account
+                JOptionPane.showMessageDialog(this, "Your account is deactivated or credentials are incorrect.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_sendCodeButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,15 +640,20 @@ public class LoginPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton loginButton;
+    private javax.swing.JTextField loginCodeTextField;
+    private javax.swing.JLabel loginIcon;
     private javax.swing.JPanel pane;
+    private javax.swing.JPasswordField passwordField;
+    private javax.swing.JButton sendCodeButton;
+    private javax.swing.JTextField usernameTextField;
     // End of variables declaration//GEN-END:variables
 }

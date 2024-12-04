@@ -9,12 +9,26 @@ package BloodBankManagement;
  * @author Souleymane.Sono
  */
 public class Menu extends javax.swing.JFrame {
+    private String userRole; 
 
     /**
      * Creates new form Menu
      */
-    public Menu() {
-        initComponents();
+    public Menu(String userRole) {
+        //AdminPane.setEnabled(false);
+        this.userRole = userRole;
+        initComponents();  // Initialize the menu components
+        
+        setupMenuBasedOnRole();  
+    }
+    private void setupMenuBasedOnRole() {
+        if ("Admin".equals(userRole)) {
+            // Setup for Admin role
+            enableAdminMenu();
+        } else if ("Guest User".equals(userRole)) {
+            // Setup for Guest role
+            disableAdminMenu();
+        }
     }
 
     /**
@@ -27,44 +41,64 @@ public class Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         Desktop = new javax.swing.JDesktopPane();
+        jPanel1 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        AdminPane = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem11 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
+        activityLogMenuItem = new javax.swing.JMenuItem();
+        logoutMenuItem = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         AddDonor = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        updateDonor = new javax.swing.JMenuItem();
+        DeleteDonor = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
+        AddNewStock = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(153, 0, 0));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 2345, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1348, Short.MAX_VALUE)
+        );
+
+        Desktop.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout DesktopLayout = new javax.swing.GroupLayout(Desktop);
         Desktop.setLayout(DesktopLayout);
         DesktopLayout.setHorizontalGroup(
             DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 2357, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DesktopLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         DesktopLayout.setVerticalGroup(
             DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1354, Short.MAX_VALUE)
+            .addGroup(DesktopLayout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jMenuBar1.setBackground(new java.awt.Color(204, 0, 0));
         jMenuBar1.setPreferredSize(new java.awt.Dimension(472, 40));
 
-        jMenu1.setText("Admin Panel");
-        jMenu1.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        AdminPane.setText("Admin Panel");
+        AdminPane.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
 
         jMenuItem1.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         jMenuItem1.setText("Add New User");
@@ -73,28 +107,39 @@ public class Menu extends javax.swing.JFrame {
                 jMenuItem1ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        AdminPane.add(jMenuItem1);
 
         jMenuItem2.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
-        jMenuItem2.setText("Delete User");
-        jMenu1.add(jMenuItem2);
+        jMenuItem2.setText("Manage Users");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        AdminPane.add(jMenuItem2);
 
-        jMenuItem3.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
-        jMenuItem3.setText("Update user Profile");
-        jMenu1.add(jMenuItem3);
-
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(AdminPane);
 
         jMenu4.setText("     My Account");
         jMenu4.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
 
-        jMenuItem11.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
-        jMenuItem11.setText("Profile");
-        jMenu4.add(jMenuItem11);
+        activityLogMenuItem.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        activityLogMenuItem.setText("Profile");
+        activityLogMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                activityLogMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu4.add(activityLogMenuItem);
 
-        jMenuItem12.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
-        jMenuItem12.setText("Logout");
-        jMenu4.add(jMenuItem12);
+        logoutMenuItem.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        logoutMenuItem.setText("Logout");
+        logoutMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu4.add(logoutMenuItem);
 
         jMenuBar1.add(jMenu4);
 
@@ -115,13 +160,13 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu2.add(AddDonor);
 
-        jMenuItem5.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
-        jMenuItem5.setText("Update Donor Profile");
-        jMenu2.add(jMenuItem5);
+        updateDonor.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        updateDonor.setText("Update Donor Profile");
+        jMenu2.add(updateDonor);
 
-        jMenuItem6.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
-        jMenuItem6.setText("Delete Donor");
-        jMenu2.add(jMenuItem6);
+        DeleteDonor.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        DeleteDonor.setText("Delete Donor");
+        jMenu2.add(DeleteDonor);
 
         jMenuItem4.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         jMenuItem4.setText("Add Blood");
@@ -146,9 +191,14 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem7);
 
-        jMenuItem8.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
-        jMenuItem8.setText("Add New Stock");
-        jMenu3.add(jMenuItem8);
+        AddNewStock.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        AddNewStock.setText("Add New Stock");
+        AddNewStock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddNewStockActionPerformed(evt);
+            }
+        });
+        jMenu3.add(AddNewStock);
 
         jMenuItem9.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         jMenuItem9.setText("Update Stock");
@@ -159,7 +209,7 @@ public class Menu extends javax.swing.JFrame {
         jMenu3.add(jMenuItem10);
 
         jMenuItem13.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
-        jMenuItem13.setText("Add Blood");
+        jMenuItem13.setText("Add Blood ");
         jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem13ActionPerformed(evt);
@@ -222,6 +272,56 @@ public class Menu extends javax.swing.JFrame {
         Desktop.add(ab).setVisible(true);
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
+    private void AddNewStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddNewStockActionPerformed
+        // TODO add your handling code here:
+        Desktop.add(new AddingBloodtoStock()).setVisible(true);
+        
+        
+        //adding new Stock
+    }//GEN-LAST:event_AddNewStockActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        
+        UserProfile up = new UserProfile();
+        Desktop.add(up).setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void activityLogMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activityLogMenuItemActionPerformed
+        ActivityLog Al = new ActivityLog();
+        Desktop.add(Al).setVisible(true);
+        
+    }//GEN-LAST:event_activityLogMenuItemActionPerformed
+
+    private void logoutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutMenuItemActionPerformed
+        //Write action to log
+        ActivityLog.writeToActivityLogFile("Logged out user: " + LoginPage.currentUsername);
+        
+        //Logout
+        LoginPage.currentUsername = null;
+        
+        //Open login menu
+        LoginPage loginNow = new LoginPage();
+        loginNow.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_logoutMenuItemActionPerformed
+    
+    public void disableAdminMenu() {
+        AdminPane.setEnabled(false);  // Disables the AdminPane
+        AddNewStock.setEnabled(false);
+        AddDonor.setEnabled(false);
+        DeleteDonor.setEnabled(false);
+    }
+
+    // Method to enable the AdminPane
+    public  void enableAdminMenu() {
+        AdminPane.setEnabled(true);  // Enables the AdminPane
+        AddNewStock.setEnabled(true);
+        AddDonor.setEnabled(true);
+    }
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -252,31 +352,33 @@ public class Menu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Menu().setVisible(true);
+               // new Menu().setVisible(true);
+                String testUserRole = "Admin"; // or "Guest", depending on your test scenario
+                new Menu(testUserRole).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem AddDonor;
+    private javax.swing.JMenuItem AddNewStock;
+    private javax.swing.JMenu AdminPane;
+    private javax.swing.JMenuItem DeleteDonor;
     private javax.swing.JDesktopPane Desktop;
-    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuItem activityLogMenuItem;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem logoutMenuItem;
+    private javax.swing.JMenuItem updateDonor;
     // End of variables declaration//GEN-END:variables
 }

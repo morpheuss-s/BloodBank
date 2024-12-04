@@ -5,7 +5,7 @@
 package BloodBankManagement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import com.mysql.jdbc.Driver;
+//import com.mysql.jdbc.Driver;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.DriverManager;
